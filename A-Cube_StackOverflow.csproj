@@ -89,13 +89,10 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Area.cs" />
     <Compile Include="Assets\Scripts\CoroutineDelegate.cs" />
-<<<<<<< HEAD
     <Compile Include="Assets\Scripts\Enums.cs" />
-    <Compile Include="Assets\Scripts\FireCtrl.cs" />
-=======
     <Compile Include="Assets\Scripts\EventManager.cs" />
+    <Compile Include="Assets\Scripts\FireCtrl.cs" />
     <Compile Include="Assets\Scripts\InitializeResolution.cs" />
->>>>>>> 5bccdf094e6f27ef1de49ba881b1db84ecd18b71
     <Compile Include="Assets\Scripts\InputManager.cs" />
     <Compile Include="Assets\Scripts\ItemCtrl.cs" />
     <Compile Include="Assets\Scripts\ObjectPool.cs" />
