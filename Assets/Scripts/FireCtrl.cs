@@ -15,6 +15,8 @@ public class FireCtrl : ItemCtrl {
                 if (wood != null)
                     wood.Burn(this);
             }
+
+            DestroyItem();
         }
     }
 }
