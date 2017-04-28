@@ -6,16 +6,6 @@ public class StoneCtrl : ItemCtrl {
 
     public bool isSparking = false;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
     private void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.collider.CompareTag("Item"))

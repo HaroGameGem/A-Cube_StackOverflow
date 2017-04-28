@@ -10,22 +10,15 @@ public class WoodCtrl : ItemCtrl {
     public float burningLifeTime = 3f;
     public float burnDelay = 0.1f;
 
-
     float delay;
     Color originColor;
 
-
-	// Use this for initialization
-	void Start () {
+	void Awake () {
         renderer = GetComponent<SpriteRenderer>();
         originColor = renderer.color;
         Init();
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
     private void OnCollisionStay2D(Collision2D collision)
     {
         if(isBurning)
@@ -43,7 +36,7 @@ public class WoodCtrl : ItemCtrl {
         }
     }
 
-    public void Init()
+    protected override void Init()
     {
         renderer.color = originColor;
         isBurning = false;
@@ -77,8 +70,6 @@ public class WoodCtrl : ItemCtrl {
     IEnumerator CoBurn()
     {
         yield return new WaitForSeconds(burningLifeTime);
-        transform.position = Vector3.one * 100f;
-        Init();
-        ObjectPool.Release(gameObject);
+		DestroyItem();
     }
 }
