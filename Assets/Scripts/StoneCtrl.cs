@@ -6,6 +6,15 @@ public class StoneCtrl : ItemCtrl {
 
     public bool isSparking = false;
 
+	// Use this for initialization
+	void Start () {
+        itemType = eItemType.Stone;
+	}
+	
+	// Update is called once per frame
+	void Update () {
+		
+	}
     private void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.collider.CompareTag("Item"))
@@ -22,6 +31,7 @@ public class StoneCtrl : ItemCtrl {
 
     public void Spark(ItemCtrl sender)
     {
+        
         if (isSparking)
         {
             return;
@@ -34,5 +44,19 @@ public class StoneCtrl : ItemCtrl {
             stone.isSparking = true;
         }
 
+        Vector3 dist = sender.transform.position - transform.position;
+        Collider[] arrColl = Physics.OverlapSphere(transform.position + (dist * 0.5f), 1f);
+        foreach (var n in arrColl)
+        {
+            ItemCtrl item = n.GetComponent<ItemCtrl>();
+            if(item.itemType == eItemType.Wood)
+            {
+                WoodCtrl wood = item as WoodCtrl;
+                if(wood != null)
+                {
+                    wood.Burn(this);
+                }
+            }
+        }
     }
 }
