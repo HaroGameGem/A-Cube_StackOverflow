@@ -8,7 +8,7 @@ public class StoneCtrl : ItemCtrl {
 
 	// Use this for initialization
 	void Start () {
-		
+        itemType = eItemType.Stone;
 	}
 	
 	// Update is called once per frame
@@ -32,6 +32,7 @@ public class StoneCtrl : ItemCtrl {
 
     public void Spark(ItemCtrl sender)
     {
+        
         if (isSparking)
         {
             return;
@@ -44,5 +45,11 @@ public class StoneCtrl : ItemCtrl {
             stone.isSparking = true;
         }
 
+        Vector3 dist = sender.transform.position - transform.position;
+        Collider[] arrColl = Physics.OverlapSphere(transform.position + (dist * 0.5f), 1f);
+        foreach (var item in arrColl)
+        {
+
+        }
     }
 }
