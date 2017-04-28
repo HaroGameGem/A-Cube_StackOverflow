@@ -7,10 +7,8 @@ public class Area : MonoBehaviour {
 	//singleton
 	static Area[] instance = null;
 	public static Area[] Instance { get { return instance; } }
-
-	//index
 	[SerializeField]
-	int index;
+	int singletonIndex;
 
 	//number of object in area
 	int objectCount;
@@ -25,7 +23,7 @@ public class Area : MonoBehaviour {
 		if (instance == null) {
 			instance = new Area[2];
 		}
-		instance[index] = this;
+		instance[singletonIndex] = this;
 	}
 
 	void OnTriggerEnter2D(Collider2D collider) {

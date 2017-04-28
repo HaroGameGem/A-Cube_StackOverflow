@@ -6,6 +6,7 @@ public class StoneCtrl : ItemCtrl {
 
     public bool isSparking = false;
 
+<<<<<<< HEAD
 	// Use this for initialization
 	void Start () {
         itemType = eItemType.Stone;
@@ -16,6 +17,8 @@ public class StoneCtrl : ItemCtrl {
 		
 	}
 
+=======
+>>>>>>> 6fc9c091357c97d2ec30e2a9679459fc273e142c
     private void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.collider.CompareTag("Item"))
