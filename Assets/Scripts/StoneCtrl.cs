@@ -6,7 +6,6 @@ public class StoneCtrl : ItemCtrl {
 
     public bool isSparking = false;
 
-<<<<<<< HEAD
 	// Use this for initialization
 	void Start () {
         itemType = eItemType.Stone;
@@ -16,9 +15,6 @@ public class StoneCtrl : ItemCtrl {
 	void Update () {
 		
 	}
-
-=======
->>>>>>> 6fc9c091357c97d2ec30e2a9679459fc273e142c
     private void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.collider.CompareTag("Item"))
@@ -50,9 +46,17 @@ public class StoneCtrl : ItemCtrl {
 
         Vector3 dist = sender.transform.position - transform.position;
         Collider[] arrColl = Physics.OverlapSphere(transform.position + (dist * 0.5f), 1f);
-        foreach (var item in arrColl)
+        foreach (var n in arrColl)
         {
-
+            ItemCtrl item = n.GetComponent<ItemCtrl>();
+            if(item.itemType == eItemType.Wood)
+            {
+                WoodCtrl wood = item as WoodCtrl;
+                if(wood != null)
+                {
+                    wood.Burn(this);
+                }
+            }
         }
     }
 }

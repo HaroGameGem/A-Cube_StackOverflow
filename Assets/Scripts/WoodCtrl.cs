@@ -50,7 +50,7 @@ public class WoodCtrl : ItemCtrl {
             return;
         }
 
-        if(sender.itemType != eItemType.Fire)
+        if((sender.itemType != eItemType.Fire) || (sender.itemType != eItemType.Stone))
         {
             if (delay < burnDelay)
             {
