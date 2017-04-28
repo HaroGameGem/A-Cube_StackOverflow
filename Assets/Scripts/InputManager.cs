@@ -38,18 +38,17 @@ public class InputManager : MonoBehaviour {
                 //위
                 if (Input.GetKey(KeyCode.W))
                 {
-
+                    arrTargetRigidbody[0].AddForce(Vector3.up * moveForce * 1.65f, ForceMode2D.Force);
                 }
                 //아래
                 if (Input.GetKey(KeyCode.S))
                 {
-
+                    arrTargetRigidbody[0].AddForce(Vector3.down * moveForce * 1.65f, ForceMode2D.Force);
                 }
                 //왼쪽
                 if (Input.GetKey(KeyCode.A))
                 {
                     arrTargetRigidbody[0].AddForce(Vector3.left * moveForce, ForceMode2D.Force);
-                    Debug.Log("hi");
                 }
                 //오른쪽
                 if (Input.GetKey(KeyCode.D))
@@ -65,12 +64,12 @@ public class InputManager : MonoBehaviour {
                 //위
                 if (Input.GetKey(KeyCode.P))
                 {
-
+                    arrTargetRigidbody[0].AddForce(Vector3.up * moveForce * 1.65f, ForceMode2D.Force);
                 }
                 //아래
                 if (Input.GetKey(KeyCode.Semicolon))
                 {
-
+                    arrTargetRigidbody[0].AddForce(Vector3.down * moveForce * 1.65f, ForceMode2D.Force);
                 }
                 //왼쪽
                 if (Input.GetKey(KeyCode.L))
