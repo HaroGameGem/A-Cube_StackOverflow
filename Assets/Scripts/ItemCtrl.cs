@@ -4,5 +4,10 @@ using UnityEngine;
 
 public class ItemCtrl : MonoBehaviour {
     public eItemType itemType;
-    
+
+
+
+	public void Destroy() {
+
+	}
 }

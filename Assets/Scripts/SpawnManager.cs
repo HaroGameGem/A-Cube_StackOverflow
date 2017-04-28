@@ -4,50 +4,76 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour {
 
-    public GameObject prefab;
-    public Transform P1spawnPosObject;
-    public Transform P2spawnPosObject;
+	//singleton
+	static SpawnManager[] instance = null;
+	public static SpawnManager[] Instance { get { return instance; } }
+	[SerializeField]
+	int singletonIndex;
 
-    ObjectPool prefabPool;
+	//spawn position
+	Transform spawnPosition;
 
-    public float spawnDelayPerSec = 3f;
+	//target items
+	public GameObject[] itemObjects;
+	ObjectPool[] itemPools;
 
-	// Use this for initialization
-	void Start () {
-        StartCoroutine(CoSpawn());
+	//selected items per turn
+	ObjectPool[] selectedItems = new ObjectPool[5];
 
-        prefabPool = ObjectPool.CreateFor(prefab, 100);
+	//selected item index
+	int selectedIndex = 0;
+	int selectedIndex_ { get { return selectedIndex; } set { selectedIndex = value; } }
+
+	public float spawnDelayPerSec = 3f;
+	public WaitForSeconds waitForSpawn;
+
+	void Awake() {
+		InitializeSingleton();
+		spawnPosition = transform;
+		itemPools = new ObjectPool[itemObjects.Length];
+		for (int i = 0; i < itemObjects.Length; ++i) {
+			itemPools[i] = ObjectPool.CreateFor(itemObjects[i]);
+		}
+		waitForSpawn = new WaitForSeconds(spawnDelayPerSec);
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+
+	void InitializeSingleton() {
+		if (instance == null) {
+			instance = new SpawnManager[2];
+		}
+		instance[singletonIndex] = this;
 	}
 
-    public void Run()
-    {
-        StartCoroutine(CoSpawn());
-    }
+	void SelecteItemsPerTurn() {
+		for(int i = 0; i < selectedItems.Length; ++i) {
+			selectedItems[i] = itemPools[Random.Range(0, itemPools.Length)];
+		}
+	}
 
-    public void Stop()
-    {
-        StopAllCoroutines();
-    }
+	public void Run() {
+		StartCoroutine(CoSpawn());
+	}
 
-    IEnumerator CoSpawn()
-    {
-        yield return new WaitForSeconds(spawnDelayPerSec);
-        //GameObject P1Object = Instantiate(prefab, P1spawnPosObject.position, Quaternion.identity);
-        //GameObject P2Object = Instantiate(prefab, P2spawnPosObject.position, Quaternion.identity);
-        GameObject P1Object = prefabPool.Retain(P1spawnPosObject.position, Quaternion.identity);
-        GameObject P2Object = prefabPool.Retain(P2spawnPosObject.position, Quaternion.identity);
-        
-        InputManager inputManager = InputManager.Instance;
+	public void Stop() {
+		StopAllCoroutines();
+	}
 
-        inputManager.arrTargetObject[0] = P1Object.gameObject;
-        inputManager.arrTargetObject[1] = P2Object.gameObject;
-        inputManager.arrTargetRigidbody[0] = P1Object.GetComponent<Rigidbody2D>();
-        inputManager.arrTargetRigidbody[1] = P2Object.GetComponent<Rigidbody2D>();
-        StartCoroutine(CoSpawn());
-    }
+	IEnumerator CoSpawn() {
+		while (true) {
+			SelecteItemsPerTurn();
+			yield return waitForSpawn;
+			GameObject dropItem = selectedItems[selectedIndex_].Retain(spawnPosition.position);
+			GiveControlFocus(dropItem);
+		}
+	}
+
+	void GiveControlFocus(GameObject dropItem) {
+		InputManager inputManager = InputManager.Instance;
+		inputManager.arrTargetObject[singletonIndex] = dropItem.gameObject;
+		inputManager.arrTargetRigidbody[singletonIndex] = dropItem.GetComponent<Rigidbody2D>();
+	}
+
+	public void SetSelectedIndex(int selectedIndex) {
+		selectedIndex_ = selectedIndex;
+	}
 }

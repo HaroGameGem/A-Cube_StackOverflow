@@ -7,16 +7,6 @@ public class WoodCtrl : ItemCtrl {
     public bool isBurning = false;
     public float burningLifeTime = 2f;
 
-	// Use this for initialization
-	void Start () {
-        
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
     private void OnCollisionEnter(Collision collision)
     {
         if(isBurning)
