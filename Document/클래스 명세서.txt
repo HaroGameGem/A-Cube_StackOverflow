@@ -6,7 +6,7 @@ CoroutineDelegate
 InputManager
 -Monobehavior-Singleton
 -키보드 입력으로 아이템 이동
--ad, 좌우: [Dispenser]Player*
+-ad, 좌우: [SpawnManager]Player*
 
 EventManager
 -Monobehavior-Singleton
@@ -24,8 +24,8 @@ InitializeStage
 RunStage
 -class
 -스테이지 실행
--Run(): [Dispenser]Run, [Timer]Run
--Stop(): [Dispenser]Stop
+-Run(): [SpawnManager]Run, [Timer]Run
+-Stop(): [SpawnManager]Stop
 
 Result
 -class
@@ -39,7 +39,7 @@ Timer
 --카운트 시간(초)
 -Run(): 1초마다 코루틴 반복하며 카운트 시간-1, 카운트 시간이 0이 될 경우 [RunStage]Stop 및 [EventManager]Result
 
-Dispenser
+SpawnManager
 -Monobehavior-Singleton
 -아이템 생성
 -Inspector
