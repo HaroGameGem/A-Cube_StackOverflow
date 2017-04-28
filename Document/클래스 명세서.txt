@@ -1,0 +1,66 @@
+CoroutineDelegate
+-Monobehavior-Singleton
+-Monobehavior이 아닌 class의 coroutine 지원
+-Scene 전환해도 초기화하지 않음(DontDestroyOnLoad)
+
+InputManager
+-Monobehavior-Singleton
+-키보드 입력으로 아이템 이동
+-ad, 좌우: [Dispenser]Player*
+
+EventManager
+-Monobehavior-Singleton
+-각종 이벤트 매개
+-Awake: [InitializeStage]Initialize
+-Start: [RunStage]Run
+-StopStage: [RunStage]Stop
+-Result: [Result]Run
+
+InitializeStage
+-class
+-스테이지 초기화
+-Initialize(): 게임 해상도 세팅
+
+RunStage
+-class
+-스테이지 실행
+-Run(): [Dispenser]Run, [Timer]Run
+-Stop(): [Dispenser]Stop
+
+Result
+-class
+-결과 생성
+-Run(): [Area]ObjectCount 둘 비교하여 승리한 쪽 텍스트 출력
+
+Timer
+-class
+-시간제한
+-inpsector
+--카운트 시간(초)
+-Run(): 1초마다 코루틴 반복하며 카운트 시간-1, 카운트 시간이 0이 될 경우 [RunStage]Stop 및 [EventManager]Result
+
+Dispenser
+-Monobehavior-Singleton
+-아이템 생성
+-Inspector
+--드랍 아이템 list
+-get Player0: player0의 포커싱 아이템
+-get Player1: player1의 포커싱 아이템
+-Run(): 시간마다 아이템 생성 코루틴 Start
+-Stop(): 아이템 생성 코루틴 Stop
+
+Item
+-Monobehavior
+-아이템
+-Move(enum direction): 좌, 우로 이동
+-SetGravityScale(float scale): 중력 스케일 세팅
+-Destroy(): 이동 후 릴리즈
+
+Area
+-Monobehavior-Singleton
+-싱글톤 반환 개체가 list->0, 1번 index로 각각에 접근
+-inspector
+--index
+-get ObjectCount: objectCount 반환
+-OnCollisionEnter2D: item tag일 경우 objectCount+1
+-OnCollisionExit2D: item tag일 경우 objectCount-1
