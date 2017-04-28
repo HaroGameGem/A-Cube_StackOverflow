@@ -58,6 +58,8 @@ public class RunStage {
 
 	public void Run() {
 		timer.Run();
+		SpawnManager.Instance[0].Run();
+		SpawnManager.Instance[1].Run();
 	}
 
 	public void Stop() {

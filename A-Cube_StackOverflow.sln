@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2017
+# Visual Studio 2015
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "A-Cube_StackOverflow", "A-Cube_StackOverflow.csproj", "{3AAD694B-CCED-E954-F732-79FF30C3896F}"
 EndProject
 Global
