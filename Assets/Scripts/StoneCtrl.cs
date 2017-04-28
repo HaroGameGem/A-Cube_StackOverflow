@@ -31,11 +31,11 @@ public class StoneCtrl : ItemCtrl {
 
     public void Spark(ItemCtrl sender)
     {
-        
         if (isSparking)
         {
             return;
         }
+        Debug.Log("Sparking");
 
         if (sender.itemType == eItemType.Stone)
         {
@@ -44,17 +44,22 @@ public class StoneCtrl : ItemCtrl {
             stone.isSparking = true;
         }
 
-        Vector3 dist = sender.transform.position - transform.position;
-        Collider[] arrColl = Physics.OverlapSphere(transform.position + (dist * 0.5f), 1f);
+        Vector2 dist = sender.transform.position - transform.position;
+        Vector2 pos = transform.position;
+        dist = pos + (dist * 0.5f);
+        Collider2D[] arrColl = Physics2D.OverlapCircleAll(dist, 1f);
         foreach (var n in arrColl)
         {
             ItemCtrl item = n.GetComponent<ItemCtrl>();
-            if(item.itemType == eItemType.Wood)
+            if(item != null)
             {
-                WoodCtrl wood = item as WoodCtrl;
-                if(wood != null)
+                if (item.itemType == eItemType.Wood)
                 {
-                    wood.Burn(this);
+                    WoodCtrl wood = item as WoodCtrl;
+                    if (wood != null)
+                    {
+                        wood.Burn(this);
+                    }
                 }
             }
         }

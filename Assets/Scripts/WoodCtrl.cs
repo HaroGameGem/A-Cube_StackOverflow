@@ -50,7 +50,7 @@ public class WoodCtrl : ItemCtrl {
             return;
         }
 
-        if((sender.itemType != eItemType.Fire) || (sender.itemType != eItemType.Stone))
+        if((sender.itemType == eItemType.Wood))
         {
             if (delay < burnDelay)
             {
@@ -61,8 +61,6 @@ public class WoodCtrl : ItemCtrl {
 
         isBurning = true;
         renderer.color = Color.black;
-
-        Debug.Log("탄다");
 
         StartCoroutine(CoBurn());
     }
