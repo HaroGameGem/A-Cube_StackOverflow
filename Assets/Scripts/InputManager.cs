@@ -16,6 +16,7 @@ public class InputManager : MonoBehaviour {
     public Rigidbody2D[] arrTargetRigidbody;
 
     public float moveForce = 1f;
+    public float rotSpeed = 1f;
 
     private void Awake()
     {
@@ -32,7 +33,6 @@ public class InputManager : MonoBehaviour {
 	void Update () {
         if(arrTargetObject[0] != null)
         {
-            Debug.Log(arrTargetRigidbody[0]);
             if(arrTargetRigidbody[0] != null)
             {
                 //위
@@ -49,11 +49,13 @@ public class InputManager : MonoBehaviour {
                 if (Input.GetKey(KeyCode.A))
                 {
                     arrTargetRigidbody[0].AddForce(Vector3.left * moveForce, ForceMode2D.Force);
+                    arrTargetObject[0].transform.Rotate(new Vector3(0f, 0f, 1f * rotSpeed));
                 }
                 //오른쪽
                 if (Input.GetKey(KeyCode.D))
                 {
                     arrTargetRigidbody[0].AddForce(Vector3.right * moveForce, ForceMode2D.Force);
+                    arrTargetObject[0].transform.Rotate(new Vector3(0f, 0f, -1f * rotSpeed));
                 }
             }
         }
@@ -75,11 +77,13 @@ public class InputManager : MonoBehaviour {
                 if (Input.GetKey(KeyCode.L))
                 {
                     arrTargetRigidbody[1].AddForce(Vector3.left * moveForce, ForceMode2D.Force);
+                    arrTargetObject[1].transform.Rotate(new Vector3(0f, 0f, 1f * rotSpeed));
                 }
                 //오른쪽
                 if (Input.GetKey(KeyCode.Quote))
                 {
                     arrTargetRigidbody[1].AddForce(Vector3.right * moveForce, ForceMode2D.Force);
+                    arrTargetObject[1].transform.Rotate(new Vector3(0f, 0f, -1f * rotSpeed));
                 }
             }
         }
