@@ -15,6 +15,12 @@ public class FireCtrl : ItemCtrl {
                 if (wood != null)
                     wood.Burn(this);
             }
+            if(item.itemType == eItemType.Bomb)
+            {
+                BombCtrl bomb = item as BombCtrl;
+                if (bomb != null)
+                    bomb.Burn(this);
+            }
 
             DestroyItem();
         }

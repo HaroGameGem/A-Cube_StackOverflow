@@ -4,6 +4,7 @@
     Stone,
     Fire,
     Wood,
+    Bomb,
     Metal,
     Bug,
     Fruit,
