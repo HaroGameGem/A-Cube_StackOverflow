@@ -16,6 +16,9 @@ public class UIManager : MonoBehaviour {
 	//area count
 	public Text[] areaCount;
 
+	//selector
+	public Transform[] selectors;
+
 	void Awake() {
 		instance = this;
 	}
@@ -34,5 +37,14 @@ public class UIManager : MonoBehaviour {
 
 	public void SetAreaCount(int areaIndex, int value) {
 		areaCount[areaIndex].text = value.ToString();
+	}
+
+	public void SetSelectedItem(int playerIndex, int itemIndex) {
+		if(playerIndex == 0) {
+			selectors[playerIndex].position = selectedItems0[itemIndex].transform.position;
+		} else {
+			selectors[playerIndex].position = selectedItems1[itemIndex].transform.position;
+		}
+		
 	}
 }

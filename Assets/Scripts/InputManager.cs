@@ -45,16 +45,16 @@ public class InputManager : MonoBehaviour {
 					arrTargetObject[0].transform.Rotate(new Vector3(0f, 0f, -1f * rotSpeed));
 				}
 				//변경좌측
-				if (Input.GetKey(KeyCode.Q)) {
+				if (Input.GetKeyDown(KeyCode.Q)) {
 					if (SpawnManager.Instance[0].SelectedIndex <= 0) {
-						SpawnManager.Instance[0].SelectedIndex = 5;
+						SpawnManager.Instance[0].SelectedIndex = 4;
 					} else {
 						--SpawnManager.Instance[0].SelectedIndex;
 					}
 				}
 				//변경우측
-				if (Input.GetKey(KeyCode.E)) {
-					if (SpawnManager.Instance[0].SelectedIndex >= 5) {
+				if (Input.GetKeyDown(KeyCode.E)) {
+					if (SpawnManager.Instance[0].SelectedIndex >= 4) {
 						SpawnManager.Instance[0].SelectedIndex = 0;
 					} else {
 						++SpawnManager.Instance[0].SelectedIndex;
@@ -83,7 +83,7 @@ public class InputManager : MonoBehaviour {
 					arrTargetObject[1].transform.Rotate(new Vector3(0f, 0f, -1f * rotSpeed));
 				}
 				//변경좌측
-				if (Input.GetKey(KeyCode.O)) {
+				if (Input.GetKeyDown(KeyCode.O)) {
 					if (SpawnManager.Instance[1].SelectedIndex <= 0) {
 						SpawnManager.Instance[1].SelectedIndex = 4;
 					} else {
@@ -91,7 +91,7 @@ public class InputManager : MonoBehaviour {
 					}
 				}
 				//변경우측
-				if (Input.GetKey(KeyCode.LeftBracket)) {
+				if (Input.GetKeyDown(KeyCode.LeftBracket)) {
 					if (SpawnManager.Instance[1].SelectedIndex >= 4) {
 						SpawnManager.Instance[1].SelectedIndex = 0;
 					} else {

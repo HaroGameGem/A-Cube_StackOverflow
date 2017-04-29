@@ -22,7 +22,13 @@ public class SpawnManager : MonoBehaviour {
 
 	//selected item index
 	int selectedIndex = 0;
-	public int SelectedIndex { get { return selectedIndex; } set { selectedIndex = value; } }
+	public int SelectedIndex {
+		get { return selectedIndex; }
+		set {
+			selectedIndex = value;
+			UIManager.Instance.SetSelectedItem(singletonIndex, selectedIndex);
+		}
+	}
 
 	public float spawnDelayPerSec = 3f;
 	public WaitForSeconds waitForSpawn;
