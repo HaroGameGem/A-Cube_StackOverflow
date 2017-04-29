@@ -12,7 +12,8 @@ public class StoneCtrl : ItemCtrl {
 
     new private void Awake()
     {
-        base.Awake();        itemType = eItemType.Stone;
+        base.Awake();
+		itemType = eItemType.Stone;
         originColor = renderer.color;
     }
 	

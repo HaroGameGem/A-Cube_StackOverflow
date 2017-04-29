@@ -5,8 +5,6 @@ using UnityEngine;
 public class BombCtrl : ItemCtrl
 {
 
-    new SpriteRenderer renderer;
-
     public bool isBombing = false;
     public bool isBurning = false;
     public float burningLifeTime = 3f;
@@ -20,7 +18,6 @@ public class BombCtrl : ItemCtrl
     {
         base.Awake();
         itemType = eItemType.Bomb;
-        renderer = GetComponent<SpriteRenderer>();
         originColor = renderer.color;
         Init();
     }

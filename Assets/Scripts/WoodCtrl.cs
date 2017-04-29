@@ -16,8 +16,9 @@ public class WoodCtrl : ItemCtrl {
 	int eatenRate = 0;
 	WaitForSeconds waitForEatenByBug = new WaitForSeconds(0.1f);
 
-	void Awake () {
-        renderer = GetComponent<SpriteRenderer>();        originColor = renderer.color;
+	new void Awake () {
+		base.Awake();
+		originColor = renderer.color;
 	}
 
 	protected override void Init() {
@@ -96,12 +97,9 @@ public class WoodCtrl : ItemCtrl {
         StartCoroutine(CoBurn());
     }
 
-    float bombRadius = 2f;
     IEnumerator CoBurn()
     {
-        //rigidbody2D.AddForce(Vector2.up * 10f, ForceMode2D.Impulse);
         yield return new WaitForSeconds(burningLifeTime);
-        Collider2D[] arrHit = Physics2D.OverlapCircleAll(transform.position, bombRadius);
 		DestroyItem();
     }
 }

@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class BugCtrl : ItemCtrl {
 
-	//parent's rigidbody
-	Rigidbody2D bugRigidbody;
-
 	//collision count
 	int collisionCount = 0;
 
@@ -16,13 +13,13 @@ public class BugCtrl : ItemCtrl {
 	//wait for burning
 	WaitForSeconds waitForBurning = new WaitForSeconds(3f);
 
-	void Awake() {
-		bugRigidbody = GetComponent<Rigidbody2D>();
+	new void Awake() {
+		base.Awake();
 		itemType = eItemType.Bug;
-		StartCoroutine("RunMove");
 	}
 
 	protected override void Init() {
+		StartCoroutine("RunMove");
 		collisionCount = 0;
 	}
 
@@ -33,9 +30,9 @@ public class BugCtrl : ItemCtrl {
 				yield return waitForMove;
 			}
 			if (Random.Range(0, 2) == 0) {
-				bugRigidbody.AddForce(jumpPower * (Vector2.up + Vector2.left + Vector2.up), ForceMode2D.Impulse);
+				rigidbody2D.AddForce(jumpPower * (Vector2.up + Vector2.left + Vector2.up), ForceMode2D.Impulse);
 			} else {
-				bugRigidbody.AddForce(jumpPower * (Vector2.up + Vector2.right + Vector2.up), ForceMode2D.Impulse);
+				rigidbody2D.AddForce(jumpPower * (Vector2.up + Vector2.right + Vector2.up), ForceMode2D.Impulse);
 			}
 			yield return waitForMove;
 		}
