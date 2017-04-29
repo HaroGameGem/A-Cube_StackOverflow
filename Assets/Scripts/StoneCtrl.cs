@@ -7,14 +7,11 @@ public class StoneCtrl : ItemCtrl {
     public float radius = 0.8f;
     public bool isSparking = false;
     public bool isBreak = false;
-    Color originColor;
-    public Color breakColor;
 
     new private void Awake()
     {
         base.Awake();
 		itemType = eItemType.Stone;
-        originColor = renderer.color;
     }
 	
     protected override void Init()
@@ -22,7 +19,6 @@ public class StoneCtrl : ItemCtrl {
         base.Init();
         isSparking = false;
         isBreak = false;
-        renderer.color = originColor;
     }
     private void OnCollisionStay2D(Collision2D collision)
     {
@@ -80,7 +76,7 @@ public class StoneCtrl : ItemCtrl {
         {
             DestroyItem();
         }
-        renderer.color = breakColor;
+        TurnColor();
         isBreak = true;
     }
 }

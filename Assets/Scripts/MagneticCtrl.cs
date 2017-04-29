@@ -4,13 +4,27 @@ using UnityEngine;
 
 public class MagneticCtrl : ItemCtrl {
 
-	// Use this for initialization
-	void Start () {
+    public bool isBreak = false;
+
+    new private void Awake()
+    {
+        base.Awake();
         itemType = eItemType.Magnetic;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    }
+
+    protected override void Init()
+    {
+        base.Init();
+        isBreak = false;
+    }
+
+    public void Break(ItemCtrl sender)
+    {
+        if (isBreak)
+        {
+            DestroyItem();
+        }
+        TurnColor();
+        isBreak = true;
+    }
 }

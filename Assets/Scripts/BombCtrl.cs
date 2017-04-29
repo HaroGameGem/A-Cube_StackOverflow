@@ -115,6 +115,15 @@ public class BombCtrl : ItemCtrl
                     if (stone != null)
                         stone.Break(this);
                 }
+
+                if(item.itemType == eItemType.Magnetic)
+                {
+                    MagneticCtrl magnetic = item as MagneticCtrl;
+                    if (magnetic != null)
+                    {
+                        magnetic.Break(this);
+                    }
+                }
             }
         }
     }

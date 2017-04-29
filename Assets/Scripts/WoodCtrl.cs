@@ -9,7 +9,6 @@ public class WoodCtrl : ItemCtrl {
     public float burnDelay = 0.1f;
 
     float delay;
-    Color originColor;
 
 	//detecting bug flag
 	int contactedBugCount = 0;
@@ -18,6 +17,7 @@ public class WoodCtrl : ItemCtrl {
 
 	new void Awake () {
 		base.Awake();
+        itemType = eItemType.Wood;
 		originColor = renderer.color;
 	}
 
@@ -92,7 +92,7 @@ public class WoodCtrl : ItemCtrl {
         }
 
         isBurning = true;
-        renderer.color = Color.black;
+        TurnColor();
 
         StartCoroutine(CoBurn());
     }

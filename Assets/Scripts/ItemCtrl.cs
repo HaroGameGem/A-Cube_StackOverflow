@@ -20,10 +20,18 @@ public class ItemCtrl : MonoBehaviour {
     //wait for checkDestroy
     WaitForSeconds waitForCheckY = new WaitForSeconds(0.1f);
 
+    // 기존 색
+    [HideInInspector]
+    public Color originColor;
+
+    // 상호작용 시 바뀔 색
+    public Color turnColor;
+
     protected void Awake()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
         renderer = GetComponent<SpriteRenderer>();
+        originColor = renderer.color;
     }
 
     void OnEnable() {
@@ -32,9 +40,11 @@ public class ItemCtrl : MonoBehaviour {
 		StartCoroutine("RunCheckYForDestroy");
 	}
 
-	protected virtual void Init() { }
+	protected virtual void Init() {
+        InitColor();
+    }
 
-	IEnumerator RunCheckYForDestroy() {
+    IEnumerator RunCheckYForDestroy() {
 		while(true) {
 			if(trans.position.y < -100) {
 				DestroyItem();
@@ -49,4 +59,14 @@ public class ItemCtrl : MonoBehaviour {
 		StopCoroutine("RunCheckYForDestroy");
 		ObjectPool.Release(gameObject);
 	}
+
+    public virtual void TurnColor()
+    {
+        renderer.color = turnColor;
+    }
+
+    public virtual void InitColor()
+    {
+        renderer.color = originColor;
+    }
 }

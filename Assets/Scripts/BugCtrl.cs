@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class BugCtrl : ItemCtrl {
 
+    public bool isBurning = false;
+
 	//collision count
 	int collisionCount = 0;
 
 	//wait for move
-	WaitForSeconds waitForMove = new WaitForSeconds(2f);
+	WaitForSeconds waitForMove = new WaitForSeconds(3f);
 
 	//wait for burning
 	WaitForSeconds waitForBurning = new WaitForSeconds(3f);
@@ -21,6 +23,7 @@ public class BugCtrl : ItemCtrl {
 	protected override void Init() {
 		StartCoroutine("RunMove");
 		collisionCount = 0;
+        isBurning = false;
 	}
 
 	IEnumerator RunMove() {
@@ -43,7 +46,7 @@ public class BugCtrl : ItemCtrl {
 		if (collision.collider.CompareTag("Item")) {
 			switch (collision.collider.GetComponent<ItemCtrl>().itemType) {
 				case eItemType.Fire:
-					StartCoroutine(BurnFromFire());
+                    Burn();
 					break;
 			}
 		}
@@ -79,6 +82,15 @@ public class BugCtrl : ItemCtrl {
 		StopCoroutine("RunMove");
 		base.DestroyItem();
 	}
+
+    public void Burn()
+    {
+        if (isBurning)
+            return;
+        isBurning = true;
+        TurnColor();
+        StartCoroutine(BurnFromFire());
+    }
 
 	IEnumerator BurnFromFire() {
 		yield return waitForBurning;

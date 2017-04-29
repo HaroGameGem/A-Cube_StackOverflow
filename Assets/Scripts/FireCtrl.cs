@@ -9,6 +9,7 @@ public class FireCtrl : ItemCtrl {
         if (collision.collider.CompareTag("Item"))
         {
             ItemCtrl item = collision.gameObject.GetComponent<ItemCtrl>();
+
             if (item.itemType == eItemType.Wood)
             {
                 WoodCtrl wood = item as WoodCtrl;
@@ -21,8 +22,8 @@ public class FireCtrl : ItemCtrl {
                 if (bomb != null)
                     bomb.Burn(this);
             }
-
-            DestroyItem();
         }
+
+        DestroyItem();
     }
 }
