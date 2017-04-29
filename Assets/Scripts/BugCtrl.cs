@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BugCtrl : ItemCtrl {
 
-    public bool isBurning = false;
+	public bool isBurning = false;
 
 	//collision count
 	int collisionCount = 0;
@@ -23,13 +23,13 @@ public class BugCtrl : ItemCtrl {
 	protected override void Init() {
 		StartCoroutine("RunMove");
 		collisionCount = 0;
-        isBurning = false;
+		isBurning = false;
 	}
 
 	IEnumerator RunMove() {
 		const float jumpPower = 4f;
-		while(true) {
-			if(collisionCount <= 0) {
+		while (true) {
+			if (collisionCount <= 0) {
 				yield return waitForMove;
 			}
 			if (Random.Range(0, 2) == 0) {
@@ -46,7 +46,7 @@ public class BugCtrl : ItemCtrl {
 		if (collision.collider.CompareTag("Item")) {
 			switch (collision.collider.GetComponent<ItemCtrl>().itemType) {
 				case eItemType.Fire:
-                    Burn();
+					Burn();
 					break;
 			}
 		}
@@ -83,14 +83,13 @@ public class BugCtrl : ItemCtrl {
 		base.DestroyItem();
 	}
 
-    public void Burn()
-    {
-        if (isBurning)
-            return;
-        isBurning = true;
-        TurnColor();
-        StartCoroutine(BurnFromFire());
-    }
+	public void Burn() {
+		if (isBurning)
+			return;
+		isBurning = true;
+		TurnColor();
+		StartCoroutine(BurnFromFire());
+	}
 
 	IEnumerator BurnFromFire() {
 		yield return waitForBurning;

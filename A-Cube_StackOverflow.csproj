@@ -116,6 +116,7 @@
     <Compile Include="Assets\Scripts\InitializeResolution.cs" />
     <Compile Include="Assets\Scripts\InputManager.cs" />
     <Compile Include="Assets\Scripts\ItemCtrl.cs" />
+    <Compile Include="Assets\Scripts\MabbuniCtrl.cs" />
     <Compile Include="Assets\Scripts\MagneticCtrl.cs" />
     <Compile Include="Assets\Scripts\MetalCtrl.cs" />
     <Compile Include="Assets\Scripts\ObjectPool.cs" />

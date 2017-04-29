@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 public class ObjectPool {
 
+	class ParentMonobehavior : MonoBehaviour { }
+
 	//original GameObject
 	GameObject origin;
 	public GameObject Origin { get { return origin; } }
@@ -30,7 +32,7 @@ public class ObjectPool {
 
 	void InitializeParent() {
 		GameObject parentObj = new GameObject(origin.name);
-		parent.mono = parentObj.GetComponent<MonoBehaviour>();
+		parent.mono = parentObj.AddComponent<ParentMonobehavior>();
 		parent.trans = parentObj.transform;
 	}
 
@@ -95,7 +97,7 @@ public class ObjectPool {
 		ReturnToPool(gameObj);
 	}
 
-	public class Releaser : MonoBehaviour {
+	class Releaser : MonoBehaviour {
 
 		//gameObject which has this releaser
 		GameObject gameObj;

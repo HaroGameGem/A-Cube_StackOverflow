@@ -19,6 +19,9 @@ public class UIManager : MonoBehaviour {
 	//selector
 	public Transform[] selectors;
 
+	//time text
+	public Text timeText;
+
 	void Awake() {
 		instance = this;
 	}
@@ -45,6 +48,9 @@ public class UIManager : MonoBehaviour {
 		} else {
 			selectors[playerIndex].position = selectedItems1[itemIndex].transform.position;
 		}
-		
+	}
+
+	public void SetTime(int time) {
+		timeText.text = time.ToString();
 	}
 }

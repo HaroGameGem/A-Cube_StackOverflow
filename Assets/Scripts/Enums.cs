@@ -11,5 +11,6 @@
     Magnetic,
     Animal,
     ETC,
+	Mabbuni,
     END
 }

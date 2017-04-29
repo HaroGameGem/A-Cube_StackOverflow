@@ -14,6 +14,9 @@ public class EventManager : MonoBehaviour {
 	//Run stage
 	RunStage runStage = new RunStage();
 
+	//Result stage
+	Result result = new Result();
+
 	//limit time
 	[SerializeField]
 	int limitTime = 60;
@@ -32,12 +35,16 @@ public class EventManager : MonoBehaviour {
 		RunStage();
 	}
 
-	void RunStage() {
+	public void RunStage() {
 		runStage.Run();
 	}
 
-	void StopStage() {
+	public void StopStage() {
 		runStage.Stop();
+	}
+
+	public void RunResult() {
+		result.Run();
 	}
 }
 
@@ -64,33 +71,41 @@ public class RunStage {
 
 	public void Stop() {
 		timer.Stop();
+		SpawnManager.Instance[0].Stop();
+		SpawnManager.Instance[1].Stop();
 	}
 }
 
 public class Timer {
 
+	//coroutine
+	//Coroutine runASecond;
+
 	//limit Time
 	static int limitTime;
-	static int limitTime_ { get { return limitTime; } set { limitTime = value; } }
+	static int limitTime_ {
+		get { return limitTime; }
+		set {
+			limitTime = value;
+			UIManager.Instance.SetTime(limitTime);
+		}
+	}
 	public static int LimitTime { set { limitTime = value; } }
 
 	//wait a second
 	WaitForSeconds waitForASecond = new WaitForSeconds(1f);
-
-	//Result
-	Result result = new Result();
 
 	public void Run() {
 		CoroutineDelegate.Instance.StartCoroutine(RunASecond());
 	}
 
 	IEnumerator RunASecond() {
-		while(limitTime_ < 0) {
+		while(limitTime_ > 0) {
 			yield return waitForASecond;
 			--limitTime_;
 		}
-		Stop();
-		result.Run();
+		EventManager.Instance.StopStage();
+		EventManager.Instance.RunResult();
 	}
 
 	public void Stop() {
