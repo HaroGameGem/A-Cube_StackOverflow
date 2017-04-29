@@ -101,6 +101,8 @@ public class BombCtrl : ItemCtrl
             if (item != null)
             {
                 Vector2 force = ((Vector2)arrHit[i].transform.position - (Vector2)transform.position) * (bombForce + Random.Range(-1f, 1f));
+                if (item.rigidbody2D == null)
+                    continue;
                 item.rigidbody2D.AddForce(force, ForceMode2D.Impulse);
 
                 if (item.itemType == eItemType.Bomb)

@@ -16,7 +16,7 @@ public class AnimalCtrl : ItemCtrl {
 	public GameObject meat;
 
 	new void Awake() {
-		//base.Awake();
+		base.Awake();
 		itemType = eItemType.Animal;
 	}
 

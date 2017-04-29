@@ -30,20 +30,20 @@ public class InputManager : MonoBehaviour {
 			if (arrTargetRigidbody[0] != null) {
 				//위
 				if (Input.GetKey(KeyCode.W)) {
-					arrTargetRigidbody[0].AddForce(Vector3.up * moveForce * 1.65f, ForceMode2D.Force);
+					arrTargetRigidbody[0].AddForce(Vector3.up * moveForce * 1.8f * Time.deltaTime, ForceMode2D.Impulse);
 				}
 				//아래
 				if (Input.GetKey(KeyCode.S)) {
-					arrTargetRigidbody[0].AddForce(Vector3.down * moveForce * 1.65f, ForceMode2D.Force);
+					arrTargetRigidbody[0].AddForce(Vector3.down * moveForce * 1.8f * Time.deltaTime, ForceMode2D.Impulse);
 				}
 				//왼쪽
 				if (Input.GetKey(KeyCode.A)) {
-					arrTargetRigidbody[0].AddForce(Vector3.left * moveForce, ForceMode2D.Force);
+					arrTargetRigidbody[0].AddForce(Vector3.left * moveForce * Time.deltaTime, ForceMode2D.Impulse);
 					arrTargetObject[0].transform.Rotate(new Vector3(0f, 0f, 1f * rotSpeed));
 				}
 				//오른쪽
 				if (Input.GetKey(KeyCode.D)) {
-					arrTargetRigidbody[0].AddForce(Vector3.right * moveForce, ForceMode2D.Force);
+					arrTargetRigidbody[0].AddForce(Vector3.right * moveForce * Time.deltaTime, ForceMode2D.Impulse);
 					arrTargetObject[0].transform.Rotate(new Vector3(0f, 0f, -1f * rotSpeed));
 				}
 				//변경좌측
@@ -70,20 +70,20 @@ public class InputManager : MonoBehaviour {
 			if (arrTargetRigidbody[1] != null) {
 				//위
 				if (Input.GetKey(KeyCode.P)) {
-					arrTargetRigidbody[1].AddForce(Vector3.up * moveForce * 1.65f, ForceMode2D.Force);
+                    arrTargetRigidbody[1].AddForce(Vector3.up * moveForce * 1.8f * Time.deltaTime, ForceMode2D.Impulse);
 				}
 				//아래
 				if (Input.GetKey(KeyCode.Semicolon)) {
-					arrTargetRigidbody[1].AddForce(Vector3.down * moveForce * 1.65f, ForceMode2D.Force);
+					arrTargetRigidbody[1].AddForce(Vector3.down * moveForce * 1.8f * Time.deltaTime, ForceMode2D.Impulse);
 				}
 				//왼쪽
 				if (Input.GetKey(KeyCode.L)) {
-					arrTargetRigidbody[1].AddForce(Vector3.left * moveForce, ForceMode2D.Force);
+					arrTargetRigidbody[1].AddForce(Vector3.left * moveForce * Time.deltaTime, ForceMode2D.Impulse);
 					arrTargetObject[1].transform.Rotate(new Vector3(0f, 0f, 1f * rotSpeed));
 				}
 				//오른쪽
 				if (Input.GetKey(KeyCode.Quote)) {
-					arrTargetRigidbody[1].AddForce(Vector3.right * moveForce, ForceMode2D.Force);
+					arrTargetRigidbody[1].AddForce(Vector3.right * moveForce * Time.deltaTime, ForceMode2D.Impulse);
 					arrTargetObject[1].transform.Rotate(new Vector3(0f, 0f, -1f * rotSpeed));
 				}
 				//변경좌측

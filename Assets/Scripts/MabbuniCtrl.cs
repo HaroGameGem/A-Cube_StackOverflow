@@ -11,6 +11,7 @@ public class MabbuniCtrl : ItemCtrl {
 	public bool isEating = false;
 
 	new void Awake() {
+        base.Awake();
 		itemType = eItemType.Mabbuni;
 	}
 
