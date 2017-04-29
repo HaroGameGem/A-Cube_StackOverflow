@@ -22,7 +22,7 @@ public class SpawnManager : MonoBehaviour {
 
 	//selected item index
 	int selectedIndex = 0;
-	int selectedIndex_ { get { return selectedIndex; } set { selectedIndex = value; } }
+	public int SelectedIndex { get { return selectedIndex; } set { selectedIndex = value; } }
 
 	public float spawnDelayPerSec = 3f;
 	public WaitForSeconds waitForSpawn;
@@ -48,6 +48,7 @@ public class SpawnManager : MonoBehaviour {
 		for(int i = 0; i < selectedItems.Length; ++i) {
 			selectedItems[i] = itemPools[Random.Range(0, itemPools.Length)];
 		}
+		UIManager.Instance.SetSelectedItemsFromObjectPools(singletonIndex, selectedItems);
 	}
 
 	public void Run() {
@@ -62,7 +63,7 @@ public class SpawnManager : MonoBehaviour {
 		while (true) {
 			SelecteItemsPerTurn();
 			yield return waitForSpawn;
-			GameObject dropItem = selectedItems[selectedIndex_].Retain(spawnPosition.position);
+			GameObject dropItem = selectedItems[SelectedIndex].Retain(spawnPosition.position);
 			GiveControlFocus(dropItem);
 		}
 	}
@@ -71,9 +72,5 @@ public class SpawnManager : MonoBehaviour {
 		InputManager inputManager = InputManager.Instance;
 		inputManager.arrTargetObject[singletonIndex] = dropItem.gameObject;
 		inputManager.arrTargetRigidbody[singletonIndex] = dropItem.GetComponent<Rigidbody2D>();
-	}
-
-	public void SetSelectedIndex(int selectedIndex) {
-		selectedIndex_ = selectedIndex;
 	}
 }

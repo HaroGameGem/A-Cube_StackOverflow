@@ -6,6 +6,7 @@ public class ObjectPool {
 
 	//original GameObject
 	GameObject origin;
+	public GameObject Origin { get { return origin; } }
 
 	//data structure
 	int unitCount;

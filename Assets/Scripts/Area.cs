@@ -12,7 +12,13 @@ public class Area : MonoBehaviour {
 
 	//number of object in area
 	int objectCount;
-	int objectCount_ { get { return objectCount; } set { objectCount = value; } }
+	int objectCount_ {
+		get { return objectCount; }
+		set {
+			objectCount = value;
+			UIManager.Instance.SetAreaCount(singletonIndex, objectCount);
+		}
+	}
 	public int ObjectCount { get { return objectCount; } }
 
 	void Awake() {
