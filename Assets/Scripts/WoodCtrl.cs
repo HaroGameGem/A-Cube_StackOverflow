@@ -13,13 +13,47 @@ public class WoodCtrl : ItemCtrl {
     float delay;
     Color originColor;
 
+	//detecting bug flag
+	int contactedBugCount = 0;
+	int eatenRate = 0;
+	WaitForSeconds waitForEatenByBug = new WaitForSeconds(0.1f);
+
 	void Awake () {
         renderer = GetComponent<SpriteRenderer>();
         originColor = renderer.color;
-        Init();
 	}
-	
-    private void OnCollisionStay2D(Collision2D collision)
+
+	protected override void Init() {
+		renderer.color = originColor;
+		isBurning = false;
+		delay = 0f;
+		contactedBugCount = 0;
+		eatenRate = 0;
+	}
+
+	public void StartEatenByBug() {
+		if (contactedBugCount == 0) {
+			StartCoroutine("EatenByBug");
+		}
+		++contactedBugCount;
+	}
+
+	public void StopEatenByBug() {
+		--contactedBugCount;
+		if (contactedBugCount <= 0) {
+			StopCoroutine("EatenByBug");
+		}
+	}
+
+	IEnumerator EatenByBug() {
+		while(eatenRate < 30) {
+			yield return waitForEatenByBug;
+			eatenRate += 1;
+		}
+		DestroyItem();
+	}
+
+	private void OnCollisionStay2D(Collision2D collision)
     {
         if(isBurning)
         {
@@ -34,13 +68,6 @@ public class WoodCtrl : ItemCtrl {
                 }
             }
         }
-    }
-
-    protected override void Init()
-    {
-        renderer.color = originColor;
-        isBurning = false;
-        delay = 0f;
     }
 
     public void Burn(ItemCtrl sender)

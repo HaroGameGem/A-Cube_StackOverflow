@@ -16,7 +16,7 @@ public class ItemCtrl : MonoBehaviour {
 	void OnEnable() {
 		trans = transform;
 		Init();
-		StartCoroutine(RunCheckYForDestroy());
+		StartCoroutine("RunCheckYForDestroy");
 	}
 
 	protected virtual void Init() { }
@@ -30,10 +30,10 @@ public class ItemCtrl : MonoBehaviour {
 		}
 	}
 
-	public void DestroyItem() {
+	public virtual void DestroyItem() {
 		trans.position = Vector3.one * 100f;
 		Init();
-		StopCoroutine(RunCheckYForDestroy());
+		StopCoroutine("RunCheckYForDestroy");
 		ObjectPool.Release(gameObject);
 	}
 }
