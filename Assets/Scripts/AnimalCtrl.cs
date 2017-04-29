@@ -16,7 +16,7 @@ public class AnimalCtrl : ItemCtrl {
 	WaitForSeconds waitForBurning = new WaitForSeconds(3f);
 
 	new void Awake() {
-		//base.Awake();
+		base.Awake();
 		trans = transform;
 		meatPool = ObjectPool.CreateFor(meat);
 		itemType = eItemType.Animal;

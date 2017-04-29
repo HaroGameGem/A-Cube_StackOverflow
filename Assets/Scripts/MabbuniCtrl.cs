@@ -12,7 +12,7 @@ public class MabbuniCtrl : ItemCtrl {
 
 	new void Awake() {
 		itemType = eItemType.ETC;
-	}
+		base.Awake();	}
 
 	protected override void Init() {
 		animator = GetComponent<Animator>();

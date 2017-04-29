@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class MetalCtrl : ItemCtrl {
 
+    bool isHitting = false;
+
 	// Use this for initialization
 	void Start () {
         itemType = eItemType.Metal;
