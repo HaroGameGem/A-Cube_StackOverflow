@@ -124,6 +124,7 @@
     <Compile Include="Assets\Scripts\ParticleAutoDeactiveCtrl.cs" />
     <Compile Include="Assets\Scripts\ParticleManager.cs" />
     <Compile Include="Assets\Scripts\RotatorCtrl.cs" />
+    <Compile Include="Assets\Scripts\SoundManager.cs" />
     <Compile Include="Assets\Scripts\SpawnManager.cs" />
     <Compile Include="Assets\Scripts\StoneCtrl.cs" />
     <Compile Include="Assets\Scripts\UIManager.cs" />

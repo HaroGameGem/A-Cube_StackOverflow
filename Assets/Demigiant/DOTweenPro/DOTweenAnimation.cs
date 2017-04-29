@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using DG.Tweening.Core;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
 
 #if DOTWEEN_TMP
@@ -13,12 +12,11 @@ using UnityEngine.UI;
 #endif
 
 #pragma warning disable 1591
-namespace DG.Tweening
-{
-    /// <summary>
-    /// Attach this to a GameObject to create a tween
-    /// </summary>
-    [AddComponentMenu("DOTween/DOTween Animation")]
+namespace DG.Tweening {
+	/// <summary>
+	/// Attach this to a GameObject to create a tween
+	/// </summary>
+	[AddComponentMenu("DOTween/DOTween Animation")]
     public class DOTweenAnimation : ABSAnimationComponent
     {
         public float delay;

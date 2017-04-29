@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
@@ -129,7 +128,7 @@ public class WarmCtrl : ItemCtrl
     {
         if (isBurning)
             return;
-        isBurning = true;
+		isBurning = true;
         TurnColor();
         scaleTweener = transform.DOScale(0f, burningLifeTime * 4f);
         StartCoroutine(BurnFromFire());
@@ -138,6 +137,7 @@ public class WarmCtrl : ItemCtrl
     IEnumerator BurnFromFire()
     {
         yield return new WaitForSeconds(burningLifeTime);
-        DestroyItem();
+		SoundManager.Instance.PlayEffect(eEffectType.Burning);
+		DestroyItem();
     }
 }

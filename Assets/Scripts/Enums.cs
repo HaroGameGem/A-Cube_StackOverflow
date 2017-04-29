@@ -22,3 +22,11 @@ public enum eParticleType
     CrashParticle,
     END
 }
+
+public enum eEffectType {
+	WoodBreak,
+	StoneBreak,
+	Burning,
+	Explosion,
+	END
+}

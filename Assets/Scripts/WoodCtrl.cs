@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
@@ -52,6 +51,7 @@ public class WoodCtrl : ItemCtrl {
 			yield return waitForEatenByBug;
 			eatenRate += 1;
 		}
+		SoundManager.Instance.PlayEffect(eEffectType.WoodBreak);
 		DestroyItem();
 	}
 
@@ -95,7 +95,7 @@ public class WoodCtrl : ItemCtrl {
             }
         }
 
-        isBurning = true;
+		isBurning = true;
         TurnColor();
         scaleTweener = transform.DOScale(0f, burningLifeTime * 4f);
         StartCoroutine(CoBurn());
@@ -107,6 +107,7 @@ public class WoodCtrl : ItemCtrl {
         if (scaleTweener != null)
             scaleTweener.Kill();
         scaleTweener = null;
+		SoundManager.Instance.PlayEffect(eEffectType.Burning);
 		DestroyItem();
     }
 }

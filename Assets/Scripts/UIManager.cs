@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour {
@@ -21,6 +19,12 @@ public class UIManager : MonoBehaviour {
 
 	//time text
 	public Text timeText;
+
+	//result
+	public GameObject resultWindow;
+	public Text winPlayer;
+	public Text count0Text;
+	public Text count1Text;
 
 	void Awake() {
 		instance = this;
@@ -52,5 +56,20 @@ public class UIManager : MonoBehaviour {
 
 	public void SetTime(int time) {
 		timeText.text = time.ToString();
+	}
+
+	public void SetResult() {
+		resultWindow.SetActive(true);
+		int count1 = Area.Instance[0].ObjectCount;
+		int count2 = Area.Instance[1].ObjectCount;
+		if(count1 < count2) {
+			winPlayer.text = "1";
+		} else if(count1 > count2) {
+			winPlayer.text = "2";
+		} else {
+			winPlayer.text = "?";
+		}
+		count0Text.text = count1.ToString();
+		count1Text.text = count2.ToString();
 	}
 }

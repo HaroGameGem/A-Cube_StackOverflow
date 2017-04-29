@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class StoneCtrl : ItemCtrl {
 
@@ -88,7 +86,8 @@ public class StoneCtrl : ItemCtrl {
     {
         if(isBreak)
         {
-            DestroyItem();
+			SoundManager.Instance.PlayEffect(eEffectType.StoneBreak);
+			DestroyItem();
         }
         TurnColor();
         isBreak = true;

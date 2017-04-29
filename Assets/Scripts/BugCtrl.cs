@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BugCtrl : ItemCtrl {
@@ -93,6 +92,7 @@ public class BugCtrl : ItemCtrl {
 
 	IEnumerator BurnFromFire() {
 		yield return waitForBurning;
+		SoundManager.Instance.PlayEffect(eEffectType.Burning);
 		DestroyItem();
 	}
 }

@@ -1,6 +1,6 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EventManager : MonoBehaviour {
 
@@ -46,6 +46,10 @@ public class EventManager : MonoBehaviour {
 	public void RunResult() {
 		result.Run();
 	}
+
+	public void Restart() {
+		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+	}
 }
 
 public class InitializeStage {
@@ -64,12 +68,14 @@ public class RunStage {
 	Timer timer = new Timer();
 
 	public void Run() {
+		InputManager.Instance.CanInput = true;
 		timer.Run();
 		SpawnManager.Instance[0].Run();
 		SpawnManager.Instance[1].Run();
 	}
 
 	public void Stop() {
+		InputManager.Instance.CanInput = false;
 		timer.Stop();
 		SpawnManager.Instance[0].Stop();
 		SpawnManager.Instance[1].Stop();
@@ -90,7 +96,7 @@ public class Timer {
 			UIManager.Instance.SetTime(limitTime);
 		}
 	}
-	public static int LimitTime { set { limitTime = value; } }
+	public static int LimitTime { set { limitTime_ = value; } }
 
 	//wait a second
 	WaitForSeconds waitForASecond = new WaitForSeconds(1f);
@@ -116,6 +122,6 @@ public class Timer {
 public class Result {
 
 	public void Run() {
-
+		UIManager.Instance.SetResult();
 	}
 }

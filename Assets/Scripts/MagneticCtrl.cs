@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class MagneticCtrl : ItemCtrl {
+﻿public class MagneticCtrl : ItemCtrl {
 
     public bool isBreak = false;
 

@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BombCtrl : ItemCtrl
@@ -90,7 +89,8 @@ public class BombCtrl : ItemCtrl
         if (isBombing)
             return;
 
-        isBombing = true;
+		SoundManager.Instance.PlayEffect(eEffectType.Explosion);
+		isBombing = true;
         ParticleManager.SpawnParticle(eParticleType.BangParticle, transform.position);
 
         Collider2D[] arrHit = Physics2D.OverlapCircleAll(transform.position, bombRadius);

@@ -3,7 +3,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.IO;
 using DG.DemiEditor;
 using DG.DOTweenEditor.Core;
 using DG.Tweening;
@@ -16,9 +15,8 @@ using UnityEngine.UI;
     using TMPro;
 #endif
 
-namespace DG.DOTweenEditor
-{
-    [CustomEditor(typeof(DOTweenAnimation))]
+namespace DG.DOTweenEditor {
+	[CustomEditor(typeof(DOTweenAnimation))]
     public class DOTweenAnimationInspector : ABSAnimationInspector
     {
         enum FadeTargetType

@@ -14,7 +14,6 @@
 //		- Renamed file to "SmoothCameraOrbit.cs"
 
 using UnityEngine;
-using System.Collections;
 
 [AddComponentMenu("Camera-Control/Smooth Mouse Orbit - Unluck Software")]
 public class SmoothCameraOrbit : MonoBehaviour
