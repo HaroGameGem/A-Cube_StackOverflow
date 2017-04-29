@@ -4,12 +4,25 @@ using UnityEngine;
 
 public class StoneCtrl : ItemCtrl {
 
+    public float radius = 0.8f;
     public bool isSparking = false;
+    public bool isBreak = false;
+    Color originColor;
+    public Color breakColor;
 
-	void Awake () {
-        itemType = eItemType.Stone;
-	}
-
+    new private void Awake()
+    {
+        base.Awake();        itemType = eItemType.Stone;
+        originColor = renderer.color;
+    }
+	
+    protected override void Init()
+    {
+        base.Init();
+        isSparking = false;
+        isBreak = false;
+        renderer.color = originColor;
+    }
     private void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.collider.CompareTag("Item"))
@@ -42,7 +55,7 @@ public class StoneCtrl : ItemCtrl {
         Vector2 dist = sender.transform.position - transform.position;
         Vector2 pos = transform.position;
         dist = pos + (dist * 0.5f);
-        Collider2D[] arrColl = Physics2D.OverlapCircleAll(dist, 1f);
+        Collider2D[] arrColl = Physics2D.OverlapCircleAll(dist, radius);
         foreach (var n in arrColl)
         {
             ItemCtrl item = n.GetComponent<ItemCtrl>();
@@ -57,6 +70,16 @@ public class StoneCtrl : ItemCtrl {
                     }
                 }
             }
+        }   
+    }
+
+    public void Break(ItemCtrl sender)
+    {
+        if(isBreak)
+        {
+            DestroyItem();
         }
+        renderer.color = breakColor;
+        isBreak = true;
     }
 }

@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class WoodCtrl : ItemCtrl {
 
-    new SpriteRenderer renderer;
-
     public bool isBurning = false;
     public float burningLifeTime = 3f;
     public float burnDelay = 0.1f;
@@ -19,8 +17,7 @@ public class WoodCtrl : ItemCtrl {
 	WaitForSeconds waitForEatenByBug = new WaitForSeconds(0.1f);
 
 	void Awake () {
-        renderer = GetComponent<SpriteRenderer>();
-        originColor = renderer.color;
+        renderer = GetComponent<SpriteRenderer>();        originColor = renderer.color;
 	}
 
 	protected override void Init() {
@@ -66,6 +63,13 @@ public class WoodCtrl : ItemCtrl {
                     if (wood != null)
                         wood.Burn(this);
                 }
+
+                if (item.itemType == eItemType.Bomb)
+                {
+                    BombCtrl bomb = item as BombCtrl;
+                    if (bomb != null)
+                        bomb.Burn(this);
+                }
             }
         }
     }
@@ -92,9 +96,12 @@ public class WoodCtrl : ItemCtrl {
         StartCoroutine(CoBurn());
     }
 
+    float bombRadius = 2f;
     IEnumerator CoBurn()
     {
+        //rigidbody2D.AddForce(Vector2.up * 10f, ForceMode2D.Impulse);
         yield return new WaitForSeconds(burningLifeTime);
+        Collider2D[] arrHit = Physics2D.OverlapCircleAll(transform.position, bombRadius);
 		DestroyItem();
     }
 }
