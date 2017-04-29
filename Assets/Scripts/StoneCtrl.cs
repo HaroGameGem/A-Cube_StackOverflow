@@ -56,6 +56,7 @@ public class StoneCtrl : ItemCtrl {
         Vector2 dist = sender.transform.position - transform.position;
         Vector2 pos = transform.position;
         dist = pos + (dist * 0.5f);
+        ParticleManager.SpawnParticle(eParticleType.CrashParticle, dist);
         Collider2D[] arrColl = Physics2D.OverlapCircleAll(dist, radius);
         foreach (var n in arrColl)
         {

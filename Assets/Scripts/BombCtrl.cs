@@ -13,6 +13,8 @@ public class BombCtrl : ItemCtrl
 
     float delay;
 
+    public GameObject bangParticle;
+
     new void Awake()
     {
         base.Awake();
@@ -89,6 +91,7 @@ public class BombCtrl : ItemCtrl
             return;
 
         isBombing = true;
+        ParticleManager.SpawnParticle(eParticleType.BangParticle, transform.position);
 
         Collider2D[] arrHit = Physics2D.OverlapCircleAll(transform.position, bombRadius);
         for (int i = 0; i < arrHit.Length; i++)
