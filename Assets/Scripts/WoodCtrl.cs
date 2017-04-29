@@ -17,6 +17,8 @@ public class WoodCtrl : ItemCtrl {
 
     Tweener scaleTweener = null;
 
+    public GameObject burningParticle;
+
     new void Awake () {
 		base.Awake();
         itemType = eItemType.Wood;
@@ -27,6 +29,7 @@ public class WoodCtrl : ItemCtrl {
         base.Init();
 		renderer.color = originColor;
 		isBurning = false;
+        burningParticle.SetActive(false);
 		delay = 0f;
 		contactedBugCount = 0;
 		eatenRate = 0;
@@ -96,6 +99,7 @@ public class WoodCtrl : ItemCtrl {
         }
 
 		isBurning = true;
+        burningParticle.SetActive(true);
         TurnColor();
         scaleTweener = transform.DOScale(0f, burningLifeTime * 4f);
         StartCoroutine(CoBurn());

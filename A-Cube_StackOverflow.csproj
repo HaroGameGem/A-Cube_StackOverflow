@@ -115,6 +115,7 @@
     <Compile Include="Assets\Scripts\Enums.cs" />
     <Compile Include="Assets\Scripts\EventManager.cs" />
     <Compile Include="Assets\Scripts\FireCtrl.cs" />
+    <Compile Include="Assets\Scripts\FixRotationCtrl.cs" />
     <Compile Include="Assets\Scripts\FruitCtrl.cs" />
     <Compile Include="Assets\Scripts\InitializeResolution.cs" />
     <Compile Include="Assets\Scripts\InputManager.cs" />

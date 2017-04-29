@@ -20,6 +20,8 @@ public enum eParticleType
     None,
     BangParticle,
     CrashParticle,
+    KrunchParticle,
+    BreakParticle,
     END
 }
 
