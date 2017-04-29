@@ -13,3 +13,11 @@
     ETC,
     END
 }
+
+public enum eParticleType
+{
+    None,
+    BangParticle,
+    CrashParticle,
+    END
+}

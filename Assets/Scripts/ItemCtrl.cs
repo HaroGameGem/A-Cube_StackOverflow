@@ -39,7 +39,7 @@ public class ItemCtrl : MonoBehaviour {
         for (int i = 0; i < 3; i++)
         {
             if (scale[i] == Vector3.zero)
-                scale[i] = Vector3.one  * (1f + (0.2f * i));
+                scale[i] = Vector3.one  * (0.8f + (0.15f * i));
         }
     }
 

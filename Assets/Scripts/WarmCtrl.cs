@@ -50,7 +50,7 @@ public class WarmCtrl : ItemCtrl
             {
                 rigidbody2D.AddForce(jumpPower * (Vector2.up + Vector2.right + Vector2.up), ForceMode2D.Impulse);
             }
-            yield return new WaitForSeconds(Random.Range(0.05f, 0.15f));
+            yield return new WaitForSeconds(Random.Range(0.1f, 0.2f));
         }
     }
 
