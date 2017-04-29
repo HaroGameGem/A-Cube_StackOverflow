@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class WoodCtrl : ItemCtrl {
 
@@ -15,13 +16,16 @@ public class WoodCtrl : ItemCtrl {
 	int eatenRate = 0;
 	WaitForSeconds waitForEatenByBug = new WaitForSeconds(0.1f);
 
-	new void Awake () {
+    Tweener scaleTweener = null;
+
+    new void Awake () {
 		base.Awake();
         itemType = eItemType.Wood;
 		originColor = renderer.color;
 	}
 
 	protected override void Init() {
+        base.Init();
 		renderer.color = originColor;
 		isBurning = false;
 		delay = 0f;
@@ -93,13 +97,16 @@ public class WoodCtrl : ItemCtrl {
 
         isBurning = true;
         TurnColor();
-
+        scaleTweener = transform.DOScale(0f, burningLifeTime * 4f);
         StartCoroutine(CoBurn());
     }
 
     IEnumerator CoBurn()
     {
         yield return new WaitForSeconds(burningLifeTime);
+        if (scaleTweener != null)
+            scaleTweener.Kill();
+        scaleTweener = null;
 		DestroyItem();
     }
 }

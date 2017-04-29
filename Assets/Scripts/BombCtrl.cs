@@ -12,13 +12,11 @@ public class BombCtrl : ItemCtrl
     public float bombForce = 5f;
 
     float delay;
-    Color originColor;
 
     new void Awake()
     {
         base.Awake();
         itemType = eItemType.Bomb;
-        originColor = renderer.color;
         Init();
     }
 
@@ -71,7 +69,7 @@ public class BombCtrl : ItemCtrl
         }
 
         isBurning = true;
-        renderer.color = Color.black;
+        TurnColor();
 
         StartCoroutine(CoBurn());
     }
