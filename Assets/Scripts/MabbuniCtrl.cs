@@ -19,6 +19,7 @@ public class MabbuniCtrl : ItemCtrl {
 
 	void OnCollisionEnter2D(Collision2D collision) {
 		if (collision.collider.CompareTag("Item")) {
+			PlaySoundIfVelocityIsFast();
 			if (!isEating) {
 				ItemCtrl item = collision.collider.GetComponent<ItemCtrl>();
 				switch (item.itemType) {

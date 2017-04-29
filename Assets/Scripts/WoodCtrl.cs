@@ -59,9 +59,9 @@ public class WoodCtrl : ItemCtrl {
     {
         if(isBurning)
         {
-            if (collision.collider.CompareTag("Item"))
-            {
-                ItemCtrl item = collision.gameObject.GetComponent<ItemCtrl>();
+            if (collision.collider.CompareTag("Item")) {
+				PlaySoundIfVelocityIsFast();
+				ItemCtrl item = collision.gameObject.GetComponent<ItemCtrl>();
                 if(item.itemType == eItemType.Wood)
                 {
                     WoodCtrl wood = item as WoodCtrl;
@@ -95,6 +95,7 @@ public class WoodCtrl : ItemCtrl {
             }
         }
 
+		SoundManager.Instance.PlayEffect(eEffectType.Burning);
 		isBurning = true;
         TurnColor();
         scaleTweener = transform.DOScale(0f, burningLifeTime * 4f);
@@ -107,7 +108,6 @@ public class WoodCtrl : ItemCtrl {
         if (scaleTweener != null)
             scaleTweener.Kill();
         scaleTweener = null;
-		SoundManager.Instance.PlayEffect(eEffectType.Burning);
 		DestroyItem();
     }
 }

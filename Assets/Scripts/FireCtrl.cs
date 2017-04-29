@@ -6,7 +6,8 @@ public class FireCtrl : ItemCtrl {
     {
         if (collision.collider.CompareTag("Item"))
         {
-            ItemCtrl item = collision.gameObject.GetComponent<ItemCtrl>();
+			PlaySoundIfVelocityIsFast();
+			ItemCtrl item = collision.gameObject.GetComponent<ItemCtrl>();
 
             if (item.itemType == eItemType.Wood)
             {

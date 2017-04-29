@@ -27,11 +27,11 @@ public class EventManager : MonoBehaviour {
 	}
 
 	void Initialize() {
-		Timer.LimitTime = limitTime;
 		initializeStage.Initialize();
 	}
 
 	void Start() {
+		Timer.LimitTime = limitTime;
 		RunStage();
 	}
 

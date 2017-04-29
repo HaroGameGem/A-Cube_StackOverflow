@@ -28,6 +28,9 @@ public class ItemCtrl : MonoBehaviour {
     public Color desiredTurnColor;
     Tweener colorTweener = null;
 
+	//소리 플레이 기준 속도
+	float magnitudeVelocityForSound = 50f;
+
     public Vector3[] scale = new Vector3[3];
 
     protected void Awake()
@@ -54,6 +57,12 @@ public class ItemCtrl : MonoBehaviour {
         int sizeIdx = Random.Range(0, 3);
         trans.localScale = scale[sizeIdx];
     }
+
+	protected void PlaySoundIfVelocityIsFast() {
+		if(rigidbody2D.velocity.magnitude > magnitudeVelocityForSound) {
+			SoundManager.Instance.PlayEffect(eEffectType.Hit1 + Random.Range(0, 4));
+		}
+	}
 
     IEnumerator RunCheckYForDestroy() {
 		while(true) {

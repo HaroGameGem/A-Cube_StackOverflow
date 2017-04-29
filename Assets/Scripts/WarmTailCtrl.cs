@@ -8,7 +8,7 @@ public class WarmTailCtrl : MonoBehaviour {
     {
         if(collision.collider.CompareTag("Item"))
         {
-            ItemCtrl item = collision.gameObject.GetComponent<ItemCtrl>();
+			ItemCtrl item = collision.gameObject.GetComponent<ItemCtrl>();
             if(item.itemType == eItemType.Fire)
             {
                 warmHead.Burn();

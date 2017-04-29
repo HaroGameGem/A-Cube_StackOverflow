@@ -14,7 +14,13 @@
         isBreak = false;
     }
 
-    public void Break(ItemCtrl sender)
+	void OnCollisionEnter2D(UnityEngine.Collision2D collision) {
+		if (collision.collider.CompareTag("Item")) {
+			PlaySoundIfVelocityIsFast();
+		}
+	}
+
+	public void Break(ItemCtrl sender)
     {
         if (isBreak)
         {

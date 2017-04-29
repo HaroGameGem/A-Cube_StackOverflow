@@ -14,6 +14,9 @@ public class BugCtrl : ItemCtrl {
 	//wait for burning
 	WaitForSeconds waitForBurning = new WaitForSeconds(3f);
 
+	//bug type
+	public eBugType bugType;
+
 	new void Awake() {
 		base.Awake();
 		itemType = eItemType.Bug;
@@ -36,6 +39,17 @@ public class BugCtrl : ItemCtrl {
 			} else {
 				rigidbody2D.AddForce(jumpPower * (Vector2.up + Vector2.right + Vector2.up), ForceMode2D.Impulse);
 			}
+			switch(bugType) {
+				case eBugType.Cockroach:
+					SoundManager.Instance.PlayEffect(eEffectType.Cockroach);
+					break;
+				case eBugType.Coreana:
+					SoundManager.Instance.PlayEffect(eEffectType.Coreana);
+					break;
+				case eBugType.Trumph:
+					SoundManager.Instance.PlayEffect(eEffectType.Trump1 + Random.Range(0, 3));
+					break;
+			}
 			yield return waitForMove;
 		}
 	}
@@ -43,6 +57,7 @@ public class BugCtrl : ItemCtrl {
 	void OnCollisionEnter2D(Collision2D collision) {
 		++collisionCount;
 		if (collision.collider.CompareTag("Item")) {
+			PlaySoundIfVelocityIsFast();
 			switch (collision.collider.GetComponent<ItemCtrl>().itemType) {
 				case eItemType.Fire:
 					Burn();
@@ -85,6 +100,7 @@ public class BugCtrl : ItemCtrl {
 	public void Burn() {
 		if (isBurning)
 			return;
+		SoundManager.Instance.PlayEffect(eEffectType.Burning);
 		isBurning = true;
 		TurnColor();
 		StartCoroutine(BurnFromFire());
@@ -92,7 +108,6 @@ public class BugCtrl : ItemCtrl {
 
 	IEnumerator BurnFromFire() {
 		yield return waitForBurning;
-		SoundManager.Instance.PlayEffect(eEffectType.Burning);
 		DestroyItem();
 	}
 }

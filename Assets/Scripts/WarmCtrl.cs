@@ -90,7 +90,8 @@ public class WarmCtrl : ItemCtrl
     {
         if (collider.CompareTag("Item"))
         {
-            ItemCtrl item = collider.GetComponent<ItemCtrl>();
+			PlaySoundIfVelocityIsFast();
+			ItemCtrl item = collider.GetComponent<ItemCtrl>();
             switch (item.itemType)
             {
                 case eItemType.Wood:
@@ -128,6 +129,7 @@ public class WarmCtrl : ItemCtrl
     {
         if (isBurning)
             return;
+		SoundManager.Instance.PlayEffect(eEffectType.Burning);
 		isBurning = true;
         TurnColor();
         scaleTweener = transform.DOScale(0f, burningLifeTime * 4f);
@@ -137,7 +139,6 @@ public class WarmCtrl : ItemCtrl
     IEnumerator BurnFromFire()
     {
         yield return new WaitForSeconds(burningLifeTime);
-		SoundManager.Instance.PlayEffect(eEffectType.Burning);
 		DestroyItem();
     }
 }

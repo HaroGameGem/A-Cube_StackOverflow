@@ -13,6 +13,12 @@ public class FruitCtrl : ItemCtrl {
 		eatenRate = 0;
 	}
 
+	void OnCollisionEnter2D(Collision2D collision) {
+		if(collision.collider.CompareTag("Item")) {
+			PlaySoundIfVelocityIsFast();
+		}
+	}
+
 	public void StartEatenByBug() {
 		if (contactedBugCount == 0) {
 			StartCoroutine("EatenByBug");

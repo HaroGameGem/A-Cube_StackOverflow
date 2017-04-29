@@ -28,5 +28,24 @@ public enum eEffectType {
 	StoneBreak,
 	Burning,
 	Explosion,
+	StoneCrash,
+	Trump1,
+	Trump2,
+	Trump3,
+	Cockroach,
+	Coreana,
+	Hit1,
+	Hit2,
+	Hit3,
+	Hit4,
+	Wick,
+	Animal,
+	END
+}
+
+public enum eBugType {
+	Cockroach,
+	Coreana,
+	Trumph,
 	END
 }

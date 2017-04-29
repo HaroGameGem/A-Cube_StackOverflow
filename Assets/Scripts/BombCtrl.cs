@@ -23,9 +23,10 @@ public class BombCtrl : ItemCtrl
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if (isBurning)
+		if (collision.collider.CompareTag("Item"))
         {
-            if (collision.collider.CompareTag("Item"))
+			PlaySoundIfVelocityIsFast();
+			if (isBurning)
             {
                 ItemCtrl item = collision.gameObject.GetComponent<ItemCtrl>();
                 if (item.itemType == eItemType.Wood)
@@ -68,8 +69,8 @@ public class BombCtrl : ItemCtrl
                 return;
             }
         }
-
-        isBurning = true;
+		SoundManager.Instance.PlayEffect(eEffectType.Wick);
+		isBurning = true;
         TurnColor();
 
         StartCoroutine(CoBurn());

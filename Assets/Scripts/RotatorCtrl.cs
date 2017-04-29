@@ -27,8 +27,14 @@ public class RotatorCtrl : ItemCtrl {
         }
     }
 
-    // Update is called once per frame
-    void Update () {
+	void OnCollisionEnter2D(UnityEngine.Collision2D collision) {
+		if (collision.collider.CompareTag("Item")) {
+			PlaySoundIfVelocityIsFast();
+		}
+	}
+
+	// Update is called once per frame
+	void Update () {
 
         transform.Rotate(new Vector3(0f, 0f, 1f) * rotSpeed * Time.deltaTime);
 	}

@@ -22,7 +22,8 @@ public class StoneCtrl : ItemCtrl {
     {
         if (collision.collider.CompareTag("Item"))
         {
-            ItemCtrl item = collision.gameObject.GetComponent<ItemCtrl>();
+			PlaySoundIfVelocityIsFast();
+			ItemCtrl item = collision.gameObject.GetComponent<ItemCtrl>();
             if (item.itemType == eItemType.Stone)
             {
                 StoneCtrl stone = item as StoneCtrl;
@@ -30,6 +31,7 @@ public class StoneCtrl : ItemCtrl {
                 {
                     if (stone.rigidbody2D.velocity.magnitude > 0.5f)
                     {
+						SoundManager.Instance.PlayEffect(eEffectType.StoneCrash);
                         stone.Spark(this);
                     }
                 }

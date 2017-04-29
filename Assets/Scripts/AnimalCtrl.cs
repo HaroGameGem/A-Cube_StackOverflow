@@ -27,6 +27,7 @@ public class AnimalCtrl : ItemCtrl {
 
 	void OnCollisionEnter2D(Collision2D collision) {
 		if (collision.collider.CompareTag("Item")) {
+			PlaySoundIfVelocityIsFast();
 			switch (collision.collider.GetComponent<ItemCtrl>().itemType) {
 				case eItemType.Fire:
 					Burn();
@@ -38,6 +39,7 @@ public class AnimalCtrl : ItemCtrl {
 	public void Burn() {
 		if (isBurning)
 			return;
+		SoundManager.Instance.PlayEffect(eEffectType.Animal);
 		isBurning = true;
 		//TurnColor();
 		StartCoroutine(BurnFromFire());
