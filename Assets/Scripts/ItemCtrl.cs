@@ -9,7 +9,7 @@ public class ItemCtrl : MonoBehaviour {
 	public eItemType itemType;
 
 	//transform
-	Transform trans;
+	protected Transform trans;
 
     //Rigidbody
     [HideInInspector]

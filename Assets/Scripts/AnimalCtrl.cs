@@ -6,34 +6,32 @@ public class AnimalCtrl : ItemCtrl {
 
 	public bool isBurning = false;
 
+	//meat;
+	public GameObject meat;
+
+	//meat objectPool
+	static ObjectPool meatPool;
+
 	//wait for burning
 	WaitForSeconds waitForBurning = new WaitForSeconds(3f);
 
-	//animal
-	public GameObject animal;
-
-	//meat
-	public GameObject meat;
-
 	new void Awake() {
 		//base.Awake();
+		trans = transform;
+		meatPool = ObjectPool.CreateFor(meat);
 		itemType = eItemType.Animal;
 	}
 
 	protected override void Init() {
-		animal.SetActive(true);
-		meat.SetActive(false);
 		isBurning = false;
 	}
 
 	void OnCollisionEnter2D(Collision2D collision) {
 		if (collision.collider.CompareTag("Item")) {
-			if(animal.activeSelf) {
-				switch (collision.collider.GetComponent<ItemCtrl>().itemType) {
-					case eItemType.Fire:
-						Burn();
-						break;
-				}
+			switch (collision.collider.GetComponent<ItemCtrl>().itemType) {
+				case eItemType.Fire:
+					Burn();
+					break;
 			}
 		}
 	}
@@ -52,7 +50,7 @@ public class AnimalCtrl : ItemCtrl {
 	}
 
 	void ConvertToMeat() {
-		animal.SetActive(false);
-		meat.SetActive(true);
+		GameObject dropItem = meatPool.Retain(trans.position);
+		DestroyItem();
 	}
 }

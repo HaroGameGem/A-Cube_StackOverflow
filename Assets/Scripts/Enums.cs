@@ -10,8 +10,8 @@
     Fruit,
     Magnetic,
     Animal,
-    ETC,
-	Mabbuni,
+	Meat,
+	ETC,
     END
 }
 

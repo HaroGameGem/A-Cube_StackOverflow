@@ -11,7 +11,7 @@ public class MabbuniCtrl : ItemCtrl {
 	public bool isEating = false;
 
 	new void Awake() {
-		itemType = eItemType.Mabbuni;
+		itemType = eItemType.ETC;
 	}
 
 	protected override void Init() {
@@ -22,19 +22,12 @@ public class MabbuniCtrl : ItemCtrl {
 	void OnCollisionEnter2D(Collision2D collision) {
 		if (collision.collider.CompareTag("Item")) {
 			if (!isEating) {
-				Transform target = collision.collider.transform;
-				ItemCtrl item = target.GetComponent<ItemCtrl>();
-				while(item == null) {
-					target = target.parent;
-					item = target.GetComponent<ItemCtrl>();
-				}
+				ItemCtrl item = collision.collider.GetComponent<ItemCtrl>();
 				switch (item.itemType) {
-					case eItemType.Animal:
-						if((item as AnimalCtrl).meat.activeSelf) {
-							isEating = true;
-							item.DestroyItem();
-							animator.SetTrigger("EatMeat");
-						}
+					case eItemType.Meat:
+						isEating = true;
+						item.DestroyItem();
+						animator.SetTrigger("EatMeat");
 						break;
 				}
 			}
