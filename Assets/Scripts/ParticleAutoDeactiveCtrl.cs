@@ -19,8 +19,6 @@ public class ParticleAutoDeactiveCtrl : MonoBehaviour {
     IEnumerator CoDeactive()
     {
         yield return new WaitForSeconds(3f);
-        //yield return new WaitUntil(() => !particle.isPlaying);
-        Debug.Log("IsPlaying Done");
         transform.position = Vector3.one * 500f;
         ObjectPool.Release(this.gameObject);
     }

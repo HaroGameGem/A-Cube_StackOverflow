@@ -16,7 +16,7 @@ public class RotatorCtrl : ItemCtrl {
     protected override void Init()
     {
         base.Init();
-        rotSpeed = originRotSpeed + Random.Range(0f, rotSpeed);
+        rotSpeed = originRotSpeed + Random.Range(rotSpeed * 0.5f, rotSpeed);
         if (Random.Range(0, 2) == 0)
         {
             isFlip = true;
