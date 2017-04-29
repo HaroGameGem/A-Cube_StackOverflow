@@ -89,8 +89,10 @@ public class StoneCtrl : ItemCtrl {
         if(isBreak)
         {
 			SoundManager.Instance.PlayEffect(eEffectType.StoneBreak);
+            ParticleManager.SpawnParticle(eParticleType.BreakParticle, trans.position);
 			DestroyItem();
         }
+        ParticleManager.SpawnParticle(eParticleType.KrunchParticle, trans.position);
         TurnColor();
         isBreak = true;
     }

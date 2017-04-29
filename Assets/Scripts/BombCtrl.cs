@@ -12,6 +12,7 @@ public class BombCtrl : ItemCtrl
 
     float delay;
 
+    public GameObject burningParticle;
     public GameObject bangParticle;
 
     new void Awake()
@@ -49,6 +50,7 @@ public class BombCtrl : ItemCtrl
     protected override void Init()
     {
         renderer.color = originColor;
+        burningParticle.SetActive(false);
         isBurning = false;
         isBombing = false;
         delay = 0f;
@@ -69,8 +71,10 @@ public class BombCtrl : ItemCtrl
                 return;
             }
         }
+
 		SoundManager.Instance.PlayEffect(eEffectType.Wick);
 		isBurning = true;
+        burningParticle.SetActive(true);
         TurnColor();
 
         StartCoroutine(CoBurn());
