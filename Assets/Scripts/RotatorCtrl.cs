@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class RotatorCtrl : ItemCtrl {
-
+	
     bool isFlip = false;
     float originRotSpeed = 0f;
     public float rotSpeed = 90f;

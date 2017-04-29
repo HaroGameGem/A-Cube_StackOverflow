@@ -82,6 +82,7 @@
     <Reference Include="UnityEditor.iOS.Extensions.Common">
       <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Common.dll</HintPath>
     </Reference>
+<<<<<<< HEAD
     <Reference Include="Facebook.Unity.Settings">
       <HintPath>Library\FacebookSDK\Facebook.Unity.Settings.dll</HintPath>
     </Reference>
@@ -103,6 +104,8 @@
     <Reference Include="DOTween46">
       <HintPath>Assets\Demigiant\DOTween\DOTween46.dll</HintPath>
     </Reference>
+=======
+>>>>>>> 07ad33e85cfb85c5e4a452adbb91e32d13e5d6e8
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Demigiant\DOTweenPro\DOTweenAnimation.cs" />
@@ -125,6 +128,7 @@
     <Compile Include="Assets\Scripts\RotatorCtrl.cs" />
     <Compile Include="Assets\Scripts\SpawnManager.cs" />
     <Compile Include="Assets\Scripts\StoneCtrl.cs" />
+    <Compile Include="Assets\Scripts\UIManager.cs" />
     <Compile Include="Assets\Scripts\WarmCtrl.cs" />
     <Compile Include="Assets\Scripts\WarmTailCtrl.cs" />
     <Compile Include="Assets\Scripts\WoodCtrl.cs" />

@@ -58,7 +58,8 @@ public class ItemCtrl : MonoBehaviour {
 
     IEnumerator RunCheckYForDestroy() {
 		while(true) {
-			if(trans.position.y < -100) {
+			if(trans.position.y < -20 || trans.position.y > 20
+				|| trans.position.x < -20 || trans.position.x > 20) {
 				DestroyItem();
 			}
 			yield return waitForCheckY;
