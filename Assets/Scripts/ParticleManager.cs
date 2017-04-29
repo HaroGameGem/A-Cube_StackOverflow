@@ -23,7 +23,6 @@ public class ParticleManager : MonoBehaviour {
     public static void SpawnParticle(eParticleType type, Vector2 pos)
     {
         int n = (int)type - 1;
-        Debug.Log(n);
         particlesPool[n].Retain(pos);
     }
 }
