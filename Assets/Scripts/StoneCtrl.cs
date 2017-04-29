@@ -29,7 +29,12 @@ public class StoneCtrl : ItemCtrl {
             {
                 StoneCtrl stone = item as StoneCtrl;
                 if (stone != null)
-                    stone.Spark(this);
+                {
+                    if (stone.rigidbody2D.velocity.magnitude > 0.5f)
+                    {
+                        stone.Spark(this);
+                    }
+                }
             }
         }
     }
@@ -40,7 +45,6 @@ public class StoneCtrl : ItemCtrl {
         {
             return;
         }
-        Debug.Log("Sparking");
 
         if (sender.itemType == eItemType.Stone)
         {
@@ -64,6 +68,15 @@ public class StoneCtrl : ItemCtrl {
                     if (wood != null)
                     {
                         wood.Burn(this);
+                    }
+                }
+
+                if (item.itemType == eItemType.Bomb)
+                {
+                    BombCtrl bomb = item as BombCtrl;
+                    if (bomb != null)
+                    {
+                        bomb.Burn(this);
                     }
                 }
             }

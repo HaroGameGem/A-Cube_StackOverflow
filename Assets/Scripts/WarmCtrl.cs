@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class WarmCtrl : ItemCtrl
 {
@@ -14,7 +15,10 @@ public class WarmCtrl : ItemCtrl
     //WaitForSeconds waitForMove = new WaitForSeconds(.1f);
 
     //wait for burning
-    WaitForSeconds waitForBurning = new WaitForSeconds(3f);
+    //WaitForSeconds waitForBurning = new WaitForSeconds(3f);
+    public float burningLifeTime = 3f;
+
+    Tweener scaleTweener = null;
 
     new void Awake()
     {
@@ -108,7 +112,7 @@ public class WarmCtrl : ItemCtrl
         base.TurnColor();
         for (int i = 0; i < arrTailSpriteRenderer.Length; i++)
         {
-            arrTailSpriteRenderer[i].color = turnColor;
+            arrTailSpriteRenderer[i].color = desiredTurnColor;
         }
     }
 
@@ -127,12 +131,13 @@ public class WarmCtrl : ItemCtrl
             return;
         isBurning = true;
         TurnColor();
+        scaleTweener = transform.DOScale(0f, burningLifeTime * 4f);
         StartCoroutine(BurnFromFire());
     }
 
     IEnumerator BurnFromFire()
     {
-        yield return waitForBurning;
+        yield return new WaitForSeconds(burningLifeTime);
         DestroyItem();
     }
 }

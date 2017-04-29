@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class ItemCtrl : MonoBehaviour {
 
@@ -25,13 +26,21 @@ public class ItemCtrl : MonoBehaviour {
     public Color originColor;
 
     // 상호작용 시 바뀔 색
-    public Color turnColor;
+    public Color desiredTurnColor;
+    Tweener colorTweener = null;
+
+    public Vector3[] scale = new Vector3[3];
 
     protected void Awake()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
         renderer = GetComponent<SpriteRenderer>();
         originColor = renderer.color;
+        for (int i = 0; i < 3; i++)
+        {
+            if (scale[i] == Vector3.zero)
+                scale[i] = Vector3.one  * (1f + (0.2f * i));
+        }
     }
 
     void OnEnable() {
@@ -40,8 +49,11 @@ public class ItemCtrl : MonoBehaviour {
 		StartCoroutine("RunCheckYForDestroy");
 	}
 
-	protected virtual void Init() {
+    protected virtual void Init() {
+        StopAllCoroutines();
         InitColor();
+        int sizeIdx = Random.Range(0, 3);
+        trans.localScale = scale[sizeIdx];
     }
 
     IEnumerator RunCheckYForDestroy() {
@@ -56,18 +68,28 @@ public class ItemCtrl : MonoBehaviour {
 
 	public virtual void DestroyItem() {
 		trans.position = Vector3.one * 500f;
-		Init();
-		StopCoroutine("RunCheckYForDestroy");
+ 		StopCoroutine("RunCheckYForDestroy");
 		ObjectPool.Release(gameObject);
 	}
 
+
     public virtual void TurnColor()
     {
-        renderer.color = turnColor;
+        if (colorTweener != null)
+            return;
+
+        colorTweener = renderer.DOColor(desiredTurnColor, 1f)
+            .OnComplete(() => { colorTweener = null; });
+
     }
 
     public virtual void InitColor()
     {
+        if (colorTweener != null)
+        {
+            colorTweener.Kill();
+            colorTweener = null;
+        }
         renderer.color = originColor;
     }
 }

@@ -69,7 +69,7 @@ public class BombCtrl : ItemCtrl
         }
 
         isBurning = true;
-        renderer.color = Color.black;
+        TurnColor();
 
         StartCoroutine(CoBurn());
     }
