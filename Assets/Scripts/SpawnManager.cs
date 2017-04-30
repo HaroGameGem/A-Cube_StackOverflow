@@ -25,6 +25,7 @@ public class SpawnManager : MonoBehaviour {
 		get { return selectedIndex; }
 		set {
 			selectedIndex = value;
+			SoundManager.Instance.PlayEffect(eEffectType.ItemChange);
 			UIManager.Instance.SetSelectedItem(singletonIndex, selectedIndex);
 		}
 	}
@@ -69,6 +70,7 @@ public class SpawnManager : MonoBehaviour {
 			SelecteItemsPerTurn();
 			yield return waitForSpawn;
 			GameObject dropItem = selectedItems[SelectedIndex].Retain(spawnPosition.position);
+			SoundManager.Instance.PlayEffect(eEffectType.ItemCreate);
 			GiveControlFocus(dropItem);
 		}
 	}

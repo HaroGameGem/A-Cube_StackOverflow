@@ -29,7 +29,7 @@ public class ItemCtrl : MonoBehaviour {
     Tweener colorTweener = null;
 
 	//소리 플레이 기준 속도
-	float magnitudeVelocityForSound = 50f;
+	float magnitudeVelocityForSound = 5f;
 
     public Vector3[] scale = new Vector3[3];
 

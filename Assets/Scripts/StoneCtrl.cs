@@ -31,7 +31,6 @@ public class StoneCtrl : ItemCtrl {
                 {
                     if (stone.rigidbody2D.velocity.magnitude > 0.5f)
                     {
-						SoundManager.Instance.PlayEffect(eEffectType.StoneCrash);
                         stone.Spark(this);
                     }
                 }
@@ -56,7 +55,8 @@ public class StoneCtrl : ItemCtrl {
         Vector2 dist = sender.transform.position - transform.position;
         Vector2 pos = transform.position;
         dist = pos + (dist * 0.5f);
-        ParticleManager.SpawnParticle(eParticleType.CrashParticle, dist);
+		SoundManager.Instance.PlayEffect(eEffectType.StoneCrash);
+		ParticleManager.SpawnParticle(eParticleType.CrashParticle, dist);
         Collider2D[] arrColl = Physics2D.OverlapCircleAll(dist, radius);
         foreach (var n in arrColl)
         {
