@@ -24,6 +24,7 @@ public class BugCtrl : ItemCtrl {
 	}
 
 	protected override void Init() {
+        base.Init();
 		StartCoroutine("RunMove");
 		collisionCount = 0;
 		isBurning = false;
@@ -64,6 +65,13 @@ public class BugCtrl : ItemCtrl {
 				case eItemType.Fire:
 					Burn();
 					break;
+                case eItemType.Metal:
+                    {
+                        MetalCtrl metal = collision.collider.GetComponent<MetalCtrl>();
+                        if (metal.isHitting)
+                            Burn();
+                    }
+                    break;
 			}
 		}
 	}

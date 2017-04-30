@@ -2,7 +2,7 @@
 
 public class StoneCtrl : ItemCtrl {
 
-    public float radius = 0.8f;
+    public float sparkRadius = 0.8f;
     public bool isSparking = false;
     public bool isBreak = false;
 
@@ -57,7 +57,7 @@ public class StoneCtrl : ItemCtrl {
         dist = pos + (dist * 0.5f);
         ParticleManager.SpawnParticle(eParticleType.CrashParticle, dist);
         SoundManager.Instance.PlayEffect(eEffectType.StoneCrash);
-        Collider2D[] arrColl = Physics2D.OverlapCircleAll(dist, radius);
+        Collider2D[] arrColl = Physics2D.OverlapCircleAll(dist, sparkRadius);
         foreach (var n in arrColl)
         {
             ItemCtrl item = n.GetComponent<ItemCtrl>();
@@ -80,6 +80,25 @@ public class StoneCtrl : ItemCtrl {
                         bomb.Burn(this);
                     }
                 }
+
+                if (item.itemType == eItemType.Bug)
+                {
+                    BugCtrl bug = item as BugCtrl;
+                    if (bug != null)
+                    {
+                        bug.Burn();
+                    }
+                }
+
+                if (item.itemType == eItemType.Animal)
+                {
+                    AnimalCtrl animal = item as AnimalCtrl;
+                    if (animal != null)
+                    {
+                        animal.Burn();
+                    }
+                }
+
             }
         }   
     }

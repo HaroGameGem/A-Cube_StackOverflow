@@ -21,6 +21,12 @@ public class FireCtrl : ItemCtrl {
                 if (bomb != null)
                     bomb.Burn(this);
             }
+            if(item.itemType == eItemType.Metal)
+            {
+                MetalCtrl metal = item as MetalCtrl;
+                if (metal != null)
+                    metal.Hit();
+            }
         }
 
         DestroyItem();

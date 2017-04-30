@@ -4,6 +4,7 @@ using UnityEngine;
 public class AnimalCtrl : ItemCtrl {
 
 	public bool isBurning = false;
+    public GameObject burningParticle;
 
 	//meat;
 	public GameObject meat;
@@ -22,7 +23,9 @@ public class AnimalCtrl : ItemCtrl {
 	}
 
 	protected override void Init() {
+        base.Init();
 		isBurning = false;
+        burningParticle.SetActive(false);
 	}
 
 	void OnCollisionEnter2D(Collision2D collision) {
@@ -41,6 +44,7 @@ public class AnimalCtrl : ItemCtrl {
 			return;
 		SoundManager.Instance.PlayEffect(eEffectType.Animal);
 		isBurning = true;
+        burningParticle.SetActive(true);
 		//TurnColor();
 		StartCoroutine(BurnFromFire());
 	}

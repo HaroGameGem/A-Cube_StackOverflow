@@ -8,7 +8,13 @@ public class FruitCtrl : ItemCtrl {
 	int eatenRate = 0;
 	WaitForSeconds waitForEatenByBug = new WaitForSeconds(0.1f);
 
-	protected override void Init() {
+    private void Awake()
+    {
+        base.Awake();
+        itemType = eItemType.Fruit;
+    }
+
+    protected override void Init() {
 		contactedBugCount = 0;
 		eatenRate = 0;
 	}
@@ -34,7 +40,7 @@ public class FruitCtrl : ItemCtrl {
 	}
 
 	IEnumerator EatenByBug() {
-		while (eatenRate < 30) {
+		while (eatenRate < 15) {
 			yield return waitForEatenByBug;
 			eatenRate += 1;
 		}

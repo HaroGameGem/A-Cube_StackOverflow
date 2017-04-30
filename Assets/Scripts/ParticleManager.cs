@@ -12,7 +12,6 @@ public class ParticleManager : MonoBehaviour {
         arrStrParticleName[1] = "CrashParticle";
         arrStrParticleName[2] = "KrunchParticle";
         arrStrParticleName[3] = "BreakParticle";
-        arrStrParticleName[4] = "BugBurningParticle";
 
         particlesPool = new ObjectPool[(int)eParticleType.END - 1];
         for (int i = 0; i < particlesPool.Length; i++)

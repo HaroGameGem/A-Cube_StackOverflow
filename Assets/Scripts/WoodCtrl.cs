@@ -50,7 +50,7 @@ public class WoodCtrl : ItemCtrl {
 	}
 
 	IEnumerator EatenByBug() {
-		while(eatenRate < 30) {
+		while(eatenRate < 20) {
 			yield return waitForEatenByBug;
 			eatenRate += 1;
 		}
