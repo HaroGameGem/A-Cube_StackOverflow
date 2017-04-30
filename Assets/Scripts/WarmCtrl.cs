@@ -5,6 +5,7 @@ using DG.Tweening;
 public class WarmCtrl : ItemCtrl
 {
     public bool isBurning = false;
+    public GameObject burningParticle;
     public SpriteRenderer[] arrTailSpriteRenderer;
 
     //collision count
@@ -30,6 +31,7 @@ public class WarmCtrl : ItemCtrl
         StartCoroutine("RunMove");
         collisionCount = 0;
         isBurning = false;
+        burningParticle.SetActive(false);
     }
 
     IEnumerator RunMove()
@@ -131,6 +133,7 @@ public class WarmCtrl : ItemCtrl
             return;
 		SoundManager.Instance.PlayEffect(eEffectType.Burning);
 		isBurning = true;
+        burningParticle.SetActive(true);
         TurnColor();
         scaleTweener = transform.DOScale(0f, burningLifeTime * 4f);
         StartCoroutine(BurnFromFire());

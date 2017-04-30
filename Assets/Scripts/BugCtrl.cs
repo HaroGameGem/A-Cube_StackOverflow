@@ -4,6 +4,7 @@ using UnityEngine;
 public class BugCtrl : ItemCtrl {
 
 	public bool isBurning = false;
+    public GameObject burningParticle;
 
 	//collision count
 	int collisionCount = 0;
@@ -26,6 +27,7 @@ public class BugCtrl : ItemCtrl {
 		StartCoroutine("RunMove");
 		collisionCount = 0;
 		isBurning = false;
+        burningParticle.SetActive(false);
 	}
 
 	IEnumerator RunMove() {
@@ -102,6 +104,7 @@ public class BugCtrl : ItemCtrl {
 			return;
 		SoundManager.Instance.PlayEffect(eEffectType.Burning);
 		isBurning = true;
+        burningParticle.SetActive(true);
 		TurnColor();
 		StartCoroutine(BurnFromFire());
 	}
