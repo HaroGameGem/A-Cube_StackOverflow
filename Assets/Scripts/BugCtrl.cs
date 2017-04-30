@@ -79,6 +79,9 @@ public class BugCtrl : ItemCtrl {
 				case eItemType.Wood:
 					(item as WoodCtrl).StartEatenByBug();
 					break;
+				case eItemType.Fruit:
+					(item as FruitCtrl).StartEatenByBug();
+					break;
 			}
 		}
 	}

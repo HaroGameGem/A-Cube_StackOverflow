@@ -42,6 +42,8 @@ public enum eEffectType {
 	Hit4,
 	Wick,
 	Animal,
+	ItemChange,
+	ItemCreate,
 	END
 }
 

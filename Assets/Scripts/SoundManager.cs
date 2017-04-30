@@ -39,7 +39,8 @@ public class SoundManager : MonoBehaviour {
 		}
 		int channelIndex = GetUnusedChannelIndex();
 		effectSources[channelIndex].clip = effectClips[(int)effectType];
-		if(eEffectType.Trump1 <= effectType && effectType <= eEffectType.Trump3) {
+		if((eEffectType.Trump1 <= effectType && effectType <= eEffectType.Trump3)
+			|| (eEffectType.ItemChange <= effectType && effectType <= eEffectType.ItemCreate)) {
 			effectSources[channelIndex].pitch = 1f;
 		} else {
 			effectSources[channelIndex].pitch = Random.Range(minPitch, maxPitch);
